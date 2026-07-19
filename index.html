@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="robots" content="noindex">
+  <meta name="theme-color" content="#241a2e">
+  <meta name="author" content="@_sn01__dose">
+  <meta name="description" content="4つの軸から二人の傾向を見つめ、安心して話すための相性タイプ診断。回答は端末内だけで処理されます。">
+  <meta property="og:title" content="SUB ROSA｜相性タイプ診断">
+  <meta property="og:description" content="秘密の書斎で見つける、二人の対話のきっかけ。">
+  <meta property="og:type" content="website">
+  <title>SUB ROSA｜相性タイプ診断</title>
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="css/style.css">
+  <script src="data/questions.js" defer></script>
+  <script src="data/types.js" defer></script>
+  <script src="data/compat.js" defer></script>
+  <script src="js/app.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#app">本文へ移動</a>
+  <header class="site-header">
+    <a class="brand" href="#/" aria-label="SUB ROSA トップへ">
+      <span class="brand-mark" aria-hidden="true">SR</span>
+      <span><b>SUB ROSA</b><small>under the rose</small></span>
+    </a>
+    <nav class="site-nav" aria-label="メインナビゲーション">
+      <a href="#/quiz">診断</a>
+      <a href="#/types">タイプ図鑑</a>
+      <a href="#/match">相性</a>
+      <a href="#/safety">安全ガイド</a>
+      <a href="#/about">このサイトについて</a>
+    </nav>
+  </header>
+
+  <main id="app" tabindex="-1" aria-live="polite"></main>
+
+  <footer class="site-footer">
+    <div class="footer-rose" aria-hidden="true">❦</div>
+    <p>本サイトは18歳以上の方を対象としています。</p>
+    <p class="footer-links"><a href="#/safety">安全ガイド</a><span>・</span><a href="#/about">プライバシーと免責</a></p>
+    <p class="footer-brand">SUB ROSA <span>— 二人の秘密を、対話の灯りへ。</span></p>
+    <p class="footer-copyright">© 2026 @_sn01__dose</p>
+    <p class="footer-socials">
+      <a href="https://www.instagram.com/_sn01__dose/" target="_blank" rel="author noopener" aria-label="@_sn01__doseのInstagramを開く">Instagram</a>
+      <span aria-hidden="true">／</span>
+      <a href="https://www.threads.com/@_sn01__dose" target="_blank" rel="author noopener" aria-label="@_sn01__doseのThreadsを開く">Threads</a>
+    </p>
+  </footer>
+
+  <dialog id="age-modal" class="age-modal" aria-labelledby="age-title" aria-describedby="age-copy">
+    <div class="age-seal" aria-hidden="true">18+</div>
+    <p class="eyebrow">BEFORE ENTERING</p>
+    <h2 id="age-title">18歳以上ですか？</h2>
+    <p id="age-copy">このサイトは成人同士の関係性と嗜好について扱います。露骨な表現はありませんが、18歳未満の方はご利用いただけません。</p>
+    <div class="age-actions">
+      <button class="button button-primary" id="age-yes" type="button">はい、18歳以上です</button>
+      <button class="button button-ghost" id="age-no" type="button">いいえ、退出します</button>
+    </div>
+    <small>回答や結果は外部へ送信されません。</small>
+  </dialog>
+
+  <noscript><p class="noscript">この診断を利用するにはJavaScriptを有効にしてください。</p></noscript>
+</body>
+</html>

@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 420" role="img" aria-labelledby="title desc">
+  <title id="title">成人のニュートラルなシルエット</title>
+  <desc id="desc">落ち着いた姿勢で立つ成人を抽象化した肩上のシルエット</desc>
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#5f344c"/><stop offset="1" stop-color="#241a2e"/>
+    </linearGradient>
+  </defs>
+  <path d="M83 420c4-72 11-121 29-148 10-15 20-25 28-30v-28c-25-10-42-42-42-82 0-62 28-106 62-106s62 44 62 106c0 40-17 72-42 82v28c8 5 18 15 28 30 18 27 25 76 29 148H83Z" fill="url(#g)"/>
+  <path d="M103 105c9-57 34-85 58-85 31 0 57 40 59 93-18-5-38-19-50-42-12 22-38 34-67 34Z" fill="#201724"/>
+  <path d="M84 420c4-68 12-119 31-146l45 47 45-47c19 27 27 78 31 146" fill="#3d1f2e" opacity=".92"/>
+  <path d="M160 322v98" stroke="#c9a36a" stroke-width="2" opacity=".55"/>
+</svg>
