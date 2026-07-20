@@ -6,7 +6,8 @@
     "generate:fgpd": "node generate-characters.mjs --code FGPD --count 3",
     "gallery": "node build-character-gallery.mjs",
     "review-sheets": "node build-review-sheets.mjs",
-    "finalize": "node finalize-characters.mjs"
+    "finalize": "node finalize-characters.mjs",
+    "og-card": "node generate-og-card.mjs"
   },
   "dependencies": {
     "sharp": "^0.34.3"

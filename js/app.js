@@ -309,6 +309,10 @@
     return `#/result?${params.toString()}`;
   }
 
+  function sharedResultUrl(typeCode) {
+    return `${location.origin}${location.pathname}${sharedResultHash(typeCode)}`;
+  }
+
   function finishQuiz() {
     const result = calculateResult();
     storageSet(STORAGE_RESULT, JSON.stringify(result));
@@ -383,7 +387,7 @@
   }
 
   function shareRow(type) {
-    const url = `${location.href.split("#")[0]}${sharedResultHash(type.code)}`;
+    const url = sharedResultUrl(type.code);
     const text = `私は「${type.name}」タイプでした。｜SUB ROSA 相性タイプ診断`;
     const socialText = `${text}\n${SHARE_HASHTAG}`;
     const xUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(socialText)}&url=${encodeURIComponent(url)}`;
@@ -402,7 +406,7 @@
   }
 
   function bindShareActions(type) {
-    const url = `${location.href.split("#")[0]}${sharedResultHash(type.code)}`;
+    const url = sharedResultUrl(type.code);
     const text = `私は「${type.name}」タイプでした。｜SUB ROSA 相性タイプ診断`;
     const status = document.getElementById("share-status");
     document.getElementById("copy-share-link").addEventListener("click", async () => {

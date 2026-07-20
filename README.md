@@ -120,3 +120,15 @@ node tools/finalize-characters.mjs
 出力名は `assets/characters/{TYPE_CODE}.webp` と `assets/characters/{TYPE_CODE}@2x.webp` です。選定元・寸法・容量・透過状態は `assets/characters/manifest.json` に記録されます。アプリは通常版WebP、同名SVG、`assets/adult-silhouette.svg` の順でフォールバックします。
 
 主な生成オプションは `--dry-run`、`--force`、`--output-set NAME`、`--reference PNG`、`--model MODEL_ID`、`--quality low|medium|high|auto` です。
+
+## GitHub Pages公開
+
+公開URLは `https://sn01dose.github.io/sub-rosa/` です。GitHubの `Settings` → `Pages` で `Deploy from a branch`、ブランチ `main`、フォルダー `/(root)` を選択します。サイトはビルドなしのハッシュルーターSPAとしてサブパス配信されます。
+
+SNSカードは既存のFGPD画像とローカル日本語フォントを使って再生成できます。
+
+```powershell
+node tools/generate-og-card.mjs
+```
+
+出力は `assets/og-card.png`（1200×630）です。`index.html` のOG/Twitterメタデータは公開URL基準の絶対URL、サイト内のCSS・JavaScript・画像参照はGitHub Pagesのサブパスで動く相対URLに統一しています。検索回避の `noindex` は公開後も維持します。
