@@ -1,0 +1,18 @@
+{
+  "LGRC": "v2/LGRC/candidate-2.png",
+  "LGRD": "v2/LGRD/candidate-1.png",
+  "LGPC": "v2/LGPC/candidate-3.png",
+  "LGPD": "v2/LGPD/candidate-3.png",
+  "LTRC": "v2/LTRC/candidate-2.png",
+  "LTRD": "v2/LTRD/candidate-3.png",
+  "LTPC": "v2/LTPC/candidate-2.png",
+  "LTPD": "v2/LTPD/candidate-3.png",
+  "FGRC": "v2/FGRC/candidate-2.png",
+  "FGRD": "v2/FGRD/candidate-1.png",
+  "FGPC": "v2/FGPC/candidate-1.png",
+  "FGPD": "candidate-1.png",
+  "FTRC": "v2/FTRC/candidate-1.png",
+  "FTRD": "v2-edit/FTRD/candidate-2.png",
+  "FTPC": "v2/FTPC/candidate-3.png",
+  "FTPD": "v2/FTPD/candidate-2.png"
+}

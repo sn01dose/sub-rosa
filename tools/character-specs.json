@@ -1,0 +1,191 @@
+{
+  "version": 2,
+  "axisGrammar": {
+    "position1": {
+      "L": {
+        "label": "lead",
+        "prompt": "Keep the spine upright and the gaze straight toward the viewer. Make an inviting, presenting, or clearly indicating hand gesture part of the silhouette."
+      },
+      "F": {
+        "label": "follow",
+        "prompt": "Use a slight head tilt with an upward or lowered gaze. Keep the hands close to the chest, gently receiving, or partly behind the body."
+      }
+    },
+    "position2": {
+      "G": {
+        "label": "give",
+        "prompt": "Make the active hands the focal action: offer the specified prop or handle the specified tool with clear intent."
+      },
+      "T": {
+        "label": "take",
+        "prompt": "Make a receiving gesture the focal action: accept the specified object or draw it gently toward the chest."
+      }
+    },
+    "position3": {
+      "R": {
+        "label": "romantic",
+        "prompt": "Use warm accents, a restrained cheek blush, and tiny flower or heart echoes outside the top arch emblem."
+      },
+      "P": {
+        "label": "playful",
+        "prompt": "Shift the supporting palette cool, use a composed or quietly daring expression, and add only subtle night atmosphere or four-point sparkles outside the top arch emblem."
+      }
+    },
+    "position4": {
+      "C": {
+        "label": "calm",
+        "prompt": "Use a nearly bilateral, orderly silhouette, precisely fastened clothing, and a still balanced pose."
+      },
+      "D": {
+        "label": "dynamic",
+        "prompt": "Use clear asymmetry, moving hair or a lifted coat edge, one relaxed fastening or open outer layer, and a pose captured in motion."
+      }
+    }
+  },
+  "types": {
+    "LGRC": {
+      "archetype": "the warm bell guide",
+      "hair": "deep chestnut hair gathered into a low ponytail, with a clean side part and a few soft face-framing strands",
+      "attire": "an elegant long coat with broad panels in muted burgundy #8f3f5a, black gloves, and one tiny bell charm at the fastening",
+      "gestureExpression": "extend one gloved hand toward the viewer while smiling softly; let the other hand present the tiny bell",
+      "emblem": "one simple antique handbell silhouette",
+      "vignette": "a warm study fireplace, one reading chair, and quiet shelves",
+      "silhouette": "upright and open, with one long diagonal created by the offered arm"
+    },
+    "LGRD": {
+      "archetype": "the sovereign bond",
+      "hair": "glossy jet-black hair worn long and perfectly straight, falling well below the shoulders",
+      "attire": "a deep-wine mantle covering at least one large side of the figure, secured with a delicate jewelry-chain clasp and a small crown accent",
+      "gestureExpression": "meet the viewer with unwavering eye contact while winding the delicate jewelry chain once around two fingers as an ornamental gesture",
+      "emblem": "one small antique crown",
+      "vignette": "heavy wine-colored theater drapery with a narrow opening",
+      "silhouette": "tall, regal, and vertical, with the long hair and mantle forming two dark columns"
+    },
+    "LGPC": {
+      "archetype": "the quiet knot craftsperson",
+      "hair": "precisely cut ash-white short hair with a neat contour and one understated side fringe",
+      "attire": "a meticulous artisan waistcoat and apron panels in cool slate #556b73, paired with crisp white gloves",
+      "gestureExpression": "look downward in concentration while carefully tying a decorative silk cord knot with both gloved hands",
+      "emblem": "one ornamental cord knot with rounded loops, never a star or geometric occult mark",
+      "vignette": "orderly workshop shelves holding blank boxes, spools, and simple tools",
+      "silhouette": "compact, centered, and precise, with both hands meeting at the middle"
+    },
+    "LGPD": {
+      "archetype": "the moonlit wolf prowler",
+      "hair": "tousled silver-white hair emerging from a hood with a subtle wolf-ear silhouette",
+      "attire": "a sweeping night-indigo coat whose lining and broad lapels prominently use #4b4b78",
+      "gestureExpression": "turn back mid-step with a quietly daring half-smile, one hand controlling the flying coat edge and the other indicating the path ahead",
+      "emblem": "one clean crescent moon",
+      "vignette": "a tall night window with a pale moonlit sill and distant rooftops",
+      "silhouette": "strong backward twist, lifted coat hem, and clearly wind-swept hood and hair"
+    },
+    "LTRC": {
+      "archetype": "the welcoming stage host",
+      "hair": "chestnut medium-length hair in soft waves with an open forehead",
+      "attire": "a tailored warm-rose jacket whose large inner panels resemble stage-curtain lining, using #a04d67 across the lapels and lower half",
+      "gestureExpression": "lift one curtain-like coat edge and invite the viewer forward; hold a completely blank script booklet and a tiny bell in the other hand",
+      "emblem": "one antique handbell",
+      "vignette": "a quiet theater wing with curtain ropes and an unmarked stage entrance",
+      "silhouette": "a wide welcoming V shape made by the raised curtain edge and open stance"
+    },
+    "LTRD": {
+      "archetype": "the candid little sovereign",
+      "hair": "honey-blond hair arranged in long vertical ringlets with a polished crown-like volume",
+      "attire": "the most lavish warm-wine formal ensemble, with generous velvet panels in #7c3658, ornate cuffs, and antique-gold trim",
+      "gestureExpression": "sit on a petite antique ceremonial chair with cheek resting on one hand while the other hand extends openly toward the viewer",
+      "emblem": "one petite antique ceremonial chair",
+      "vignette": "a softly glowing chandelier above an elegant salon floor",
+      "silhouette": "a low seated triangle, one elbow raised and one open hand projecting forward"
+    },
+    "LTPC": {
+      "archetype": "the composed scene director",
+      "hair": "a precise ash-violet bob with two clean geometric hairpins that are not symbols",
+      "attire": "a structured director coat with large cool-violet panels in #6d557b and a compact antique speaking trumpet at the belt",
+      "gestureExpression": "form a rectangular viewing frame with the fingers to measure the composition, keeping the speaking trumpet secondary and pointed downward",
+      "emblem": "one pair of parted theater curtains",
+      "vignette": "two soft stage lamps and a blank rehearsal wall with no signs or writing",
+      "silhouette": "square shoulders and a distinctive hand-made frame held in front of one eye"
+    },
+    "LTPD": {
+      "archetype": "the pleasure rhythm conductor",
+      "hair": "wine-red hair swept backward in a smooth wave, exposing the forehead and one ear",
+      "attire": "a lively asymmetrical tailcoat with broad lining and waistcoat areas in #9a4f73",
+      "gestureExpression": "raise a slender conductor baton high in one hand, caught mid-sweep with a relaxed confident smile and the free hand receiving the imagined rhythm",
+      "emblem": "one crossed pair of slender conductor batons",
+      "vignette": "one elegant music stand holding completely blank cream paper, with no notes, staffs, letters, or numerals",
+      "silhouette": "a strong airborne diagonal from baton tip to the opposite lifted coat tail"
+    },
+    "FGRC": {
+      "archetype": "the devoted silver-tray attendant",
+      "hair": "neatly groomed short black hair with a precise side part and a smooth compact outline",
+      "attire": "a refined service uniform with a broad teal-gray waistcoat and long coat panels in #4f6a70, plus a soft ribbon neck detail",
+      "gestureExpression": "make a shallow courteous bow while offering a silver tray carrying one small ribboned box; wear a gentle devoted smile",
+      "emblem": "one simple polished silver serving tray",
+      "vignette": "an orderly serving room with folded linens and blank cupboard doors",
+      "silhouette": "a forward bow with both hands and the bright oval tray clearly projecting toward the viewer"
+    },
+    "FGRD": {
+      "archetype": "the playful hidden-mischief imp",
+      "hair": "dusty rose hair in two playful ponytails, clearly adult-styled and asymmetrically loosened",
+      "attire": "a berry-rose short mantle and long waistcoat with at least one broad panel in #b34e70, tiny horn-shaped hair ornaments, a decorative pointed tail, and one loosened ribbon",
+      "gestureExpression": "wink while hiding a harmless sweet behind the back with both hands partly concealed, weight tipped onto one foot",
+      "emblem": "one symmetric pair of small curved horn silhouettes",
+      "vignette": "a slightly scattered confectionery table with wrapped sweets and no labels",
+      "silhouette": "two high hair shapes, hidden hands, tilted shoulders, and a curling decorative tail"
+    },
+    "FGPC": {
+      "archetype": "the precise pocket-watch steward",
+      "hair": "meticulously combed steel-gray short hair with a straight side part and no loose strands",
+      "attire": "an immaculate steward suit whose waistcoat and long coat panels use #66707f across at least one quarter of the figure",
+      "gestureExpression": "quietly check an antique pocket watch with a completely blank face, holding it close to the chest with measured stillness",
+      "emblem": "one simple pocket-watch silhouette with blank face and no tick marks",
+      "vignette": "a long quiet corridor with repeating doors and no plaques or signs",
+      "silhouette": "strict vertical symmetry with one small circular watch held at the center"
+    },
+    "FGPD": {
+      "archetype": "the capricious black cat",
+      "hair": "the approved design: a glossy black bob sweeping across and hiding one eye",
+      "attire": "the approved design: a charcoal-black long coat with broad #333747 panels, antique-gold buttons, and a refined ribbon choker carrying a small cat clasp",
+      "gestureExpression": "preserve the approved half-sideways gaze and small self-possessed smile; one hand touches the cat choker while the other lifts the coat edge",
+      "emblem": "one crescent moon paired with one minimal black-cat head silhouette",
+      "vignette": "the approved moonlit library window with one subtle black-cat shadow",
+      "silhouette": "preserve the approved large black bob, crossed tiptoe stance, and rounded flowing coat"
+    },
+    "FTRC": {
+      "archetype": "the eager faithful companion",
+      "hair": "warm-brown tousled hair beneath a soft hood with long floppy-ear shapes",
+      "attire": "a soft layered knit ensemble with broad warm-clay panels in #8c5a54 and a ribbon necklace carrying one tiny ceramic bone charm",
+      "gestureExpression": "lean forward slightly with eyes bright in expectation, drawing the offered charm close to the chest",
+      "emblem": "one small ceramic bone paired with one simple ribbon loop",
+      "vignette": "a gentle patch of window sunlight with a cushion and one houseplant",
+      "silhouette": "forward-leaning rounded knit shapes framed by two long floppy hood ears"
+    },
+    "FTRD": {
+      "archetype": "the cherished rose favorite",
+      "hair": "long pale-gold hair in soft romantic curls, flowing asymmetrically over both shoulders",
+      "attire": "the sweetest and pinkest outfit in the set: a fully clothed frilled ceremonial long coat with large rose-pink panels in #c16184, a delicate tiara, heart-shaped fastenings, and soft ivory ruffles",
+      "gestureExpression": "receive one rose with both hands near the heart, cheeks visibly blushing, gaze lifted shyly upward with delighted warmth",
+      "emblem": "one delicate tiara",
+      "vignette": "a luminous rose window and a few soft rose petals, with no lettering",
+      "silhouette": "a flowing bell shape of long curls and frilled pink panels gathered around the received rose"
+    },
+    "FTPC": {
+      "archetype": "the silent key vessel",
+      "hair": "blue-silver hair worn long, straight, and perfectly smooth, falling as two cool vertical curtains",
+      "attire": "a high-necked quiet robe with broad blue-gray panels in #596072 and one antique key pendant",
+      "gestureExpression": "stand completely still with eyes lowered, hands overlapped gently at the sternum around the key pendant",
+      "emblem": "one antique key aligned with one simple keyhole silhouette",
+      "vignette": "a hushed archive with tall shadowed shelves and a narrow pool of cool window light",
+      "silhouette": "long bilateral hair and robe columns enclosing two layered hands at the exact center"
+    },
+    "FTPD": {
+      "archetype": "the twilight star wanderer",
+      "hair": "wild layered hair shifting from smoky violet to dusk lavender at the tips",
+      "attire": "a free-moving long coat and broad star sash using #745487 over at least one quarter of the figure, with a satin ribbon looped only around the fingers and never across the face",
+      "gestureExpression": "turn lightly on tiptoe as if beginning a spin, playing with the satin ribbon in one hand and receiving a tiny four-point sparkle in the other",
+      "emblem": "one simple four-point starburst",
+      "vignette": "a tall twilight window scattered with tiny four-point sparkles and no constellations or signs",
+      "silhouette": "spiraling hair tips, floating sash, fingertip ribbon, and a single tiptoe pivot"
+    }
+  }
+}

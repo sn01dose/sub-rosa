@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 420" role="img" aria-labelledby="fgpd-title fgpd-desc">
+  <title id="fgpd-title">気まぐれ黒猫</title>
+  <desc id="fgpd-desc">月明かりの下、黒猫を抱き、首輪のリボンを指に絡めて半ばこちらを見る、全身を衣服で包んだ成人の寓意画</desc>
+
+  <g fill="none" stroke="#c9a36a" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M34 391V92C34 49 69 24 112 24h96c43 0 78 25 78 68v299" stroke-width="2.2" opacity=".8"/>
+    <path d="M45 390V98c0-35 28-62 63-62h104c35 0 63 27 63 62v292" stroke-width="1" opacity=".52"/>
+    <path d="M34 107c18-1 27-10 28-28M286 107c-18-1-27-10-28-28M34 365c18 1 27 10 28 28M286 365c-18 1-27 10-28 28" stroke-width="1.5" opacity=".7"/>
+    <path d="M49 73c9 4 15 10 18 19-9-3-15-9-18-19Zm222 0c-9 4-15 10-18 19 9-3 15-9 18-19Z" fill="#c9a36a" stroke-width=".8" opacity=".76"/>
+    <path d="M58 327c-15-20-14-41 1-58 2 13 9 21 21 25-13 7-20 18-22 33Zm204 0c15-20 14-41-1-58-2 13-9 21-21 25 13 7 20 18 22 33Z" stroke-width="1.3" opacity=".55"/>
+    <path d="M47 397h226M65 405h190" stroke-width="1.4" opacity=".65"/>
+  </g>
+
+  <g stroke="#241a2e" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M201 45c-20 7-33 25-33 46 0 23 16 42 38 47-9 4-19 6-29 4-32-5-54-35-48-67 6-31 36-52 67-46 9 2 17 5 24 11-7 0-13 2-19 5Z" fill="#efe6da" stroke="#c9a36a" stroke-width="1.8" opacity=".94"/>
+    <path d="m97 60 4 8 8 4-8 4-4 8-4-8-8-4 8-4 4-8Zm151 74 3 6 6 3-6 3-3 6-3-6-6-3 6-3 3-6Zm-160 66 2.5 5 5 2.5-5 2.5-2.5 5-2.5-5-5-2.5 5-2.5 2.5-5Z" fill="#c9a36a" stroke="#c9a36a" stroke-width=".6"/>
+
+    <path d="M121 110c-2-35 14-59 40-62 29-3 50 19 50 54 0 22-7 43-19 58l-63 4c-8-15-9-34-8-54Z" fill="#333747" stroke-width="2.2"/>
+    <path d="M132 84c6-19 19-29 35-29 19 1 31 14 34 35-11-3-24-12-31-23-8 12-22 19-38 17Z" fill="#241a2e" stroke-width="1.8"/>
+    <path d="M137 82c-7 13-9 31-5 47 4 17 15 30 29 33 14-4 25-16 30-33 4-15 2-34-4-48-18 8-33 7-50 1Z" fill="#d7c4b7" stroke-width="2"/>
+    <path d="M132 78c-11 14-17 38-14 61 2 17 9 30 19 39l11-16c-13-12-19-28-18-49 0-13 3-25 9-34l-7-1Zm56-2c11 17 15 38 12 61-2 16-8 29-17 38l-12-15c12-12 18-27 18-47 0-13-2-25-7-34l6-3Z" fill="#333747" stroke-width="2"/>
+    <path d="M145 112c4-4 10-5 15-2M175 109c5-2 10-1 14 3" fill="none" stroke-width="1.6"/>
+    <path d="M146 114c4 3 9 3 13-1M176 112c4 3 8 3 12-1" fill="none" stroke-width="1.4"/>
+    <path d="M153 113c0 2-1 3-2 4M183 111c0 2-1 4-2 5" fill="none" stroke-width="2"/>
+    <path d="M168 114c-1 7-2 12-5 16 3 2 6 2 9 0M157 139c7 5 14 5 21-1" fill="none" stroke-width="1.35"/>
+    <path d="M142 100c8-6 16-8 24-5M177 95c8-1 14 1 19 5" fill="none" stroke-width="2"/>
+
+    <path d="M146 153v25c8 11 24 11 33 0v-26" fill="#d7c4b7" stroke-width="2"/>
+    <path d="M139 168c-28 8-46 24-57 51-11 29-17 95-17 171h191c0-76-7-142-18-171-11-27-28-43-56-51-8 13-31 15-43 0Z" fill="#333747" stroke-width="2.4"/>
+    <path d="M139 168c-8 4-16 8-22 13l22 34 21-27 22 27 22-34c-7-5-14-9-22-13-8 13-31 15-43 0Z" fill="#efe6da" stroke-width="1.8"/>
+    <path d="M160 188v152M139 215c6 7 13 12 21 15 8-3 15-8 22-15" fill="none" stroke="#c9a36a" stroke-width="1.4"/>
+    <path d="M115 182c-17 13-28 31-33 56-5 24-8 69-10 129l37 11 23-151-17-45Zm90 0c17 13 28 31 33 56 5 24 8 69 10 129l-37 11-23-151 17-45Z" fill="#464b5d" stroke-width="2"/>
+    <path d="M65 390c9-67 22-119 41-157 13-25 24-40 33-49l21 22 22-22c10 10 21 25 33 49 19 38 33 90 41 157H65Z" fill="#333747" stroke-width="2.2"/>
+    <path d="M72 389c7-43 18-80 31-111l17 112H72Zm176 0c-7-43-18-80-31-111l-17 112h48Z" fill="#241a2e" stroke-width="1.5" opacity=".84"/>
+    <path d="M96 384c17-10 39-15 64-15s47 5 64 15" fill="none" stroke="#c9a36a" stroke-width="1.5" opacity=".8"/>
+    <path d="M120 356c11-5 24-8 40-8 15 0 29 3 40 8M113 335c14-7 29-10 47-10 17 0 33 3 47 10" fill="none" stroke="#c9a36a" stroke-width="1" opacity=".4"/>
+
+    <path d="M112 225c-16 19-24 42-25 69 0 17 4 29 14 34 9 5 21 1 33-10l34-35-18-19-38 31c1-24 7-44 18-60l-18-10Z" fill="#d7c4b7" stroke-width="2"/>
+    <path d="M208 220c18 17 28 38 31 63 2 15 0 27-7 34-7 7-17 8-29 3l-43-22 11-24 43 16c-4-22-12-39-24-53l18-17Z" fill="#d7c4b7" stroke-width="2"/>
+    <path d="M114 226c-13 14-22 32-27 54l26 8c6-19 15-35 27-47l-26-15Zm93-6c15 14 26 31 32 52l-26 10c-6-19-15-34-28-45l22-17Z" fill="#464b5d" stroke-width="2"/>
+
+    <path d="M166 224c-8 11-11 24-10 39 1 18 9 34 24 47 15 12 35 15 52 6 18-10 28-31 24-51-4-18-17-31-34-37-18-7-40-8-56-4Z" fill="#241a2e" stroke-width="2.2"/>
+    <path d="M181 231c-6-13-6-24-2-35 10 5 17 13 21 24 9-8 20-12 33-10 0 11-4 21-12 29" fill="#241a2e" stroke-width="2.2"/>
+    <path d="M194 246c5-4 11-4 16 0M222 246c5-4 10-4 14 0" fill="none" stroke="#c9a36a" stroke-width="2"/>
+    <path d="M204 257c5 4 11 4 16 0M212 260c0 6-3 10-8 12M212 260c1 6 5 10 10 11" fill="none" stroke="#c9a36a" stroke-width="1.4"/>
+    <path d="M183 279c-8 13-9 27-3 42 8 20 27 31 49 26 18-4 31-17 37-36 5-16 3-31-6-44 9 3 17 11 22 23 8 21 5 43-8 61-12 17-30 25-52 23" fill="#241a2e" stroke-width="2.2"/>
+    <path d="M184 281c18 8 42 9 64 1" fill="none" stroke="#333747" stroke-width="8"/>
+    <path d="M181 280c21 11 46 11 70 0" fill="none" stroke="#c9a36a" stroke-width="2"/>
+    <path d="M215 278c-1 11-1 22 0 33" fill="none" stroke="#c9a36a" stroke-width="1.4"/>
+    <path d="M211 306c3-4 7-4 10 0-1 5-3 8-5 11-3-3-4-7-5-11Z" fill="#c9a36a" stroke-width="1"/>
+
+    <path d="M149 271c9 7 17 14 24 22 8 8 18 12 29 11" fill="none" stroke-width="2"/>
+    <path d="M151 266c-5 3-8 7-9 12M157 272c-5 4-7 8-7 13M164 278c-4 4-5 8-5 12" fill="none" stroke-width="1.2"/>
+    <path d="M231 289c8-2 15-7 20-14 5-8 6-17 2-25-2-5-8-8-13-5-5 3-5 9-2 13 4 5 10 7 17 6" fill="none" stroke="#c9a36a" stroke-width="2"/>
+    <path d="M241 245c3-6 7-10 13-11M250 246c4-5 9-7 15-6M256 253c5-2 10-1 15 2" fill="none" stroke-width="1.3"/>
+    <path d="M216 281c11-3 20-8 27-15 7-7 10-14 8-21" fill="none" stroke="#333747" stroke-width="7"/>
+    <path d="M217 281c12-3 22-8 29-16 6-6 8-13 6-20" fill="none" stroke="#c9a36a" stroke-width="1.4"/>
+
+    <path d="M87 390h146" fill="none" stroke="#c9a36a" stroke-width="2"/>
+  </g>
+</svg>
