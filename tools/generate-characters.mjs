@@ -1,7 +1,20 @@
 import fs from "node:fs/promises";
 import path from "node:path";
 import { buildGallery } from "./build-character-gallery.mjs";
-import { OUT_DIR, ROOT_DIR, buildPrompt, loadCharacterSpecs, loadTypes, readJson, writeJson } from "./lib/character-data.mjs";
+import {
+  APPEARANCES,
+  OUT_DIR,
+  ROOT_DIR,
+  SELECTED_32_PATH,
+  SELECTED_PATH,
+  buildPrompt,
+  loadCharacterSpecs,
+  loadTypes,
+  readJson,
+  resolveSelectionPath,
+  selectionValue,
+  writeJson
+} from "./lib/character-data.mjs";
 
 const GENERATIONS_API_URL = "https://api.openai.com/v1/images/generations";
 const EDITS_API_URL = "https://api.openai.com/v1/images/edits";
@@ -11,7 +24,7 @@ const EDITS_API_URL = "https://api.openai.com/v1/images/edits";
 const DEFAULT_MODEL = "gpt-image-1.5";
 
 function parseArgs(argv) {
-  const options = { codes: ["FGPD"], count: 3, model: DEFAULT_MODEL, quality: "high", delayMs: 13000, maxRetries: 4, reference: null, outputSet: null, force: false, dryRun: false };
+  const options = { codes: ["FGPD"], count: 3, model: DEFAULT_MODEL, quality: "high", delayMs: 13000, maxRetries: 4, reference: null, appearance: null, outputSet: null, force: false, dryRun: false };
   for (let index = 0; index < argv.length; index += 1) {
     const arg = argv[index];
     const value = argv[index + 1];
@@ -23,6 +36,7 @@ function parseArgs(argv) {
     else if (arg === "--delay-ms" && value) { options.delayMs = Number(value); index += 1; }
     else if (arg === "--max-retries" && value) { options.maxRetries = Number(value); index += 1; }
     else if (arg === "--reference" && value) { options.reference = value; index += 1; }
+    else if (arg === "--appearance" && value) { options.appearance = value.toLowerCase(); index += 1; }
     else if (arg === "--output-set" && value) { options.outputSet = value; index += 1; }
     else if (arg === "--force") options.force = true;
     else if (arg === "--dry-run") options.dryRun = true;
@@ -32,6 +46,8 @@ function parseArgs(argv) {
   if (!Number.isFinite(options.delayMs) || options.delayMs < 0) throw new Error("--delay-ms が不正です。");
   if (!Number.isInteger(options.maxRetries) || options.maxRetries < 0 || options.maxRetries > 8) throw new Error("--max-retries は0〜8で指定してください。");
   if (!new Set(["low", "medium", "high", "auto"]).has(options.quality)) throw new Error("--quality は low / medium / high / auto です。");
+  if (options.appearance && !APPEARANCES[options.appearance]) throw new Error("--appearance は f / m で指定してください。");
+  if (options.appearance && !options.outputSet) options.outputSet = options.appearance;
   if (options.outputSet && !/^[a-z0-9][a-z0-9_-]*$/i.test(options.outputSet)) throw new Error("--output-set は英数字・ハイフン・アンダースコアだけで指定してください。");
   if (/^gpt-image-2(?:-|$)/.test(options.model)) throw new Error("gpt-image-2 は透明背景をサポートしていません。このワークフローでは gpt-image-1.5 を使用してください。");
   return options;
@@ -129,6 +145,24 @@ function withSeriesReference(prompt) {
   ].join("\n");
 }
 
+function withPairReference(prompt, appearance) {
+  const counterpart = appearance === "f" ? "male-presenting" : "female-presenting";
+  return [
+    `Use the input image as the approved ${counterpart} version of this exact SUB ROSA type.`,
+    "Preserve the approved image's illustrator, compact adult chibi proportion, delicate ink-and-watercolor handling, thin antique-gold arch, pale sepia vignette, large wardrobe color areas, motif, specified top emblem, setting, axis gesture, emotional tone, and framing.",
+    "Create a distinct counterpart rather than a near-duplicate: change the adult gender presentation, facial structure, body silhouette, and gendered hair treatment while keeping the type-specific hair color and its identifying silhouette family.",
+    "Do not change the archetype, costume concept, props, emblem, vignette location, palette hierarchy, or four-axis body language. Do not add text, numbers, occult marks, exposed skin, or a second figure.",
+    prompt
+  ].join("\n");
+}
+
+async function loadPngReference(referencePath) {
+  const bytes = await fs.readFile(referencePath);
+  if (!isPng(bytes)) throw new Error(`参照画像はPNGである必要があります: ${path.relative(ROOT_DIR, referencePath)}`);
+  if (bytes.length >= 50 * 1024 * 1024) throw new Error(`参照画像は50MB未満にしてください: ${path.relative(ROOT_DIR, referencePath)}`);
+  return { bytes, name: path.basename(referencePath), relativePath: path.relative(ROOT_DIR, referencePath).replaceAll("\\", "/") };
+}
+
 async function loadApiKey() {
   if (process.env.OPENAI_API_KEY?.trim()) return process.env.OPENAI_API_KEY.trim();
   const envPath = path.join(ROOT_DIR, ".env");
@@ -149,15 +183,13 @@ async function main() {
   const options = parseArgs(process.argv.slice(2));
   const types = await loadTypes();
   const specs = await loadCharacterSpecs();
+  const selected = await readJson(SELECTED_32_PATH, await readJson(SELECTED_PATH, {}));
   const codes = options.codes || Object.keys(types);
   for (const code of codes) if (!types[code]) throw new Error(`不明なタイプコードです: ${code}`);
   let reference = null;
   if (options.reference) {
     const referencePath = path.resolve(ROOT_DIR, options.reference);
-    const bytes = await fs.readFile(referencePath);
-    if (!isPng(bytes)) throw new Error("--reference はPNG画像を指定してください。");
-    if (bytes.length >= 50 * 1024 * 1024) throw new Error("--reference は50MB未満にしてください。");
-    reference = { bytes, name: path.basename(referencePath), relativePath: path.relative(ROOT_DIR, referencePath).replaceAll("\\", "/") };
+    reference = await loadPngReference(referencePath);
   }
   const apiKey = options.dryRun ? null : await loadApiKey();
   if (!options.dryRun && !apiKey) throw new Error("OPENAI_API_KEY が未設定です。リポジトリ直下の .env またはプロセス環境変数へ設定してください。");
@@ -172,20 +204,29 @@ async function main() {
       .filter((item) => item?.code && item?.file)
       .map((item) => [`${item.code}/${item.file}`, item])
   );
-  const manifest = { model: options.model, size: "1024x1536", quality: options.quality, background: "transparent", outputFormat: "png", specsVersion: specs.version, outputSet: options.outputSet, reference: reference?.relativePath || null, generatedAt: new Date().toISOString(), items: [] };
+  const manifest = { model: options.model, size: "1024x1536", quality: options.quality, background: "transparent", outputFormat: "png", specsVersion: specs.version, appearance: options.appearance, outputSet: options.outputSet, reference: reference?.relativePath || null, generatedAt: new Date().toISOString(), items: [] };
   let madeRequest = false;
 
   for (const code of codes) {
     const type = types[code];
+    let codeReference = reference;
+    if (options.appearance && !codeReference) {
+      const counterpart = options.appearance === "f" ? "m" : "f";
+      const confirmedSelection = selectionValue(selected, code, counterpart);
+      if (!confirmedSelection) throw new Error(`${code}: 対となる${APPEARANCES[counterpart].label}版の選定元がselected-32.jsonにありません。`);
+      codeReference = await loadPngReference(resolveSelectionPath(code, confirmedSelection));
+    }
     const directory = path.join(runDir, code);
     await fs.mkdir(directory, { recursive: true });
     for (let candidate = 1; candidate <= options.count; candidate += 1) {
       const file = `candidate-${candidate}.png`;
       const output = path.join(directory, file);
-      const typePrompt = buildPrompt(type, candidate, specs);
-      const prompt = reference ? withSeriesReference(typePrompt) : typePrompt;
+      const typePrompt = buildPrompt(type, candidate, specs, { appearance: options.appearance, pairedReference: Boolean(options.appearance) });
+      const prompt = options.appearance
+        ? withPairReference(typePrompt, options.appearance)
+        : codeReference ? withSeriesReference(typePrompt) : typePrompt;
       const manifestKey = `${code}/${file}`;
-      const manifestItem = { ...manifestItems.get(manifestKey), code, file, prompt, status: options.dryRun ? "dry-run" : "pending" };
+      const manifestItem = { ...manifestItems.get(manifestKey), code, appearance: options.appearance, file, reference: codeReference?.relativePath || null, prompt, status: options.dryRun ? "dry-run" : "pending" };
       manifestItems.set(manifestKey, manifestItem);
       if (options.dryRun) {
         console.log(`\n[${code}/${file}]\n${prompt}\n`);
@@ -198,8 +239,8 @@ async function main() {
         }
         if (madeRequest && options.delayMs) await wait(options.delayMs);
         madeRequest = true;
-        console.log(`${code}/${file}: ${options.model}${reference ? " 参照編集" : ""} で生成中…`);
-        const result = await generateWithRetry({ apiKey, model: options.model, quality: options.quality, prompt, reference }, options.maxRetries);
+        console.log(`${code}/${file}: ${options.model}${codeReference ? " 参照編集" : ""} で生成中…`);
+        const result = await generateWithRetry({ apiKey, model: options.model, quality: options.quality, prompt, reference: codeReference }, options.maxRetries);
         if (!isPng(result.bytes)) throw new Error("返却画像がPNGではありません。");
         await fs.writeFile(output, result.bytes);
         manifestItem.status = "generated";

@@ -1,7 +1,7 @@
 import fs from "node:fs/promises";
 import path from "node:path";
 import sharp from "sharp";
-import { ASSET_DIR, OUT_DIR, ROOT_DIR, SELECTED_PATH, loadTypes, readJson, writeJson } from "./lib/character-data.mjs";
+import { APPEARANCES, ASSET_DIR, ROOT_DIR, SELECTED_32_PATH, SELECTED_PATH, loadTypes, readJson, resolveSelectionPath, selectionValue, writeJson } from "./lib/character-data.mjs";
 
 const TARGET_BYTES = 150 * 1024;
 const MANIFEST_PATH = path.join(ASSET_DIR, "manifest.json");
@@ -11,23 +11,14 @@ const OUTPUTS = [
 ];
 
 function parseArgs(argv) {
-  const options = { codes: null };
+  const options = { codes: null, appearance: null };
   for (let index = 0; index < argv.length; index += 1) {
     if (argv[index] === "--code" && argv[index + 1]) { options.codes = argv[index + 1].split(",").map((code) => code.trim().toUpperCase()).filter(Boolean); index += 1; }
+    else if (argv[index] === "--appearance" && argv[index + 1]) { options.appearance = argv[index + 1].toLowerCase(); index += 1; }
     else throw new Error(`不明な引数です: ${argv[index]}`);
   }
+  if (options.appearance && !APPEARANCES[options.appearance]) throw new Error("--appearance は f / m で指定してください。");
   return options;
-}
-
-function selectionPath(code, value) {
-  if (Number.isInteger(value)) return path.join(OUT_DIR, code, `candidate-${value}.png`);
-  const normalized = String(value || "").replaceAll("\\", "/");
-  if (/^candidate-\d+\.png$/i.test(normalized)) return path.join(OUT_DIR, code, normalized);
-  const match = normalized.match(/^([a-z0-9][a-z0-9_-]*)\/([a-z]{4})\/(candidate-\d+\.png)$/i);
-  if (!match || match[2].toUpperCase() !== code) throw new Error(`選定ファイル名が不正です: ${value}`);
-  const resolved = path.resolve(OUT_DIR, match[1], match[2].toUpperCase(), match[3]);
-  if (!resolved.startsWith(`${path.resolve(OUT_DIR)}${path.sep}`)) throw new Error(`選定パスがtools/out外です: ${value}`);
-  return resolved;
 }
 
 async function normalizedPng(input, width, height) {
@@ -72,58 +63,63 @@ async function encodeWebp(png) {
 async function main() {
   const options = parseArgs(process.argv.slice(2));
   const types = await loadTypes();
-  const selected = await readJson(SELECTED_PATH, {});
-  const codes = options.codes || Object.keys(selected);
-  if (!codes.length) throw new Error("tools/selected.json に選定結果がありません。");
+  const selected = await readJson(SELECTED_32_PATH, await readJson(SELECTED_PATH, {}));
+  const codes = options.codes || Object.keys(types);
+  if (!codes.length) throw new Error("tools/selected-32.json に選定結果がありません。");
   await fs.mkdir(ASSET_DIR, { recursive: true });
-  const existingManifest = await readJson(MANIFEST_PATH, { items: [] });
-  const manifestItems = new Map((existingManifest.items || []).map((item) => [item.code, item]));
+  const existingManifest = await readJson(MANIFEST_PATH, { version: 2, characters: {} });
+  const characters = structuredClone(existingManifest.characters || {});
+  let processed = 0;
 
   for (const code of codes) {
     if (!types[code]) throw new Error(`不明なタイプコードです: ${code}`);
-    if (!(code in selected)) throw new Error(`${code}: tools/selected.json に選定結果がありません。`);
-    const input = selectionPath(code, selected[code]);
-    await fs.access(input);
-    const assetOutputs = [];
-    for (const output of OUTPUTS) {
-      const normalized = await normalizedPng(input, output.width, output.height);
-      const encoded = await encodeWebp(normalized);
-      const destination = path.join(ASSET_DIR, `${code}${output.suffix}.webp`);
-      await fs.writeFile(destination, encoded.buffer);
-      const metadata = await sharp(encoded.buffer).metadata();
-      const stats = await sharp(encoded.buffer).stats();
-      if (!metadata.hasAlpha || stats.isOpaque) throw new Error(`${code}${output.suffix}: 透過情報が維持されていません。`);
-      const size = Math.round(encoded.buffer.length / 1024);
-      const warning = encoded.buffer.length > TARGET_BYTES ? " (150KB目安超過)" : "";
-      console.log(`${path.relative(process.cwd(), destination)}: ${metadata.width}x${metadata.height}, alpha=${metadata.hasAlpha}, q=${encoded.quality}, aq=${encoded.alphaQuality}, ${size}KB${warning}`);
-      assetOutputs.push({
-        file: path.relative(ROOT_DIR, destination).replaceAll(path.sep, "/"),
-        width: metadata.width,
-        height: metadata.height,
-        bytes: encoded.buffer.length,
-        hasAlpha: metadata.hasAlpha,
-        hasTransparency: !stats.isOpaque,
-        quality: encoded.quality,
-        alphaQuality: encoded.alphaQuality
-      });
+    const appearances = options.appearance ? [options.appearance] : Object.keys(APPEARANCES);
+    characters[code] ||= { f: { exists: false, source: null, outputs: [] }, m: { exists: false, source: null, outputs: [] } };
+    for (const appearance of appearances) {
+      const value = selectionValue(selected, code, appearance);
+      if (!value) continue;
+      const input = resolveSelectionPath(code, value);
+      await fs.access(input);
+      const assetOutputs = [];
+      for (const output of OUTPUTS) {
+        const normalized = await normalizedPng(input, output.width, output.height);
+        const encoded = await encodeWebp(normalized);
+        const destination = path.join(ASSET_DIR, `${code}_${appearance}${output.suffix}.webp`);
+        await fs.writeFile(destination, encoded.buffer);
+        const metadata = await sharp(encoded.buffer).metadata();
+        const stats = await sharp(encoded.buffer).stats();
+        if (!metadata.hasAlpha || stats.isOpaque) throw new Error(`${code}_${appearance}${output.suffix}: 透過情報が維持されていません。`);
+        const size = Math.round(encoded.buffer.length / 1024);
+        const warning = encoded.buffer.length > TARGET_BYTES ? " (150KB目安超過)" : "";
+        console.log(`${path.relative(process.cwd(), destination)}: ${metadata.width}x${metadata.height}, alpha=${metadata.hasAlpha}, q=${encoded.quality}, aq=${encoded.alphaQuality}, ${size}KB${warning}`);
+        assetOutputs.push({
+          file: path.relative(ROOT_DIR, destination).replaceAll(path.sep, "/"),
+          width: metadata.width,
+          height: metadata.height,
+          bytes: encoded.buffer.length,
+          hasAlpha: metadata.hasAlpha,
+          hasTransparency: !stats.isOpaque,
+          quality: encoded.quality,
+          alphaQuality: encoded.alphaQuality
+        });
+      }
+      characters[code][appearance] = {
+        exists: true,
+        source: path.relative(ROOT_DIR, input).replaceAll(path.sep, "/"),
+        outputs: assetOutputs
+      };
+      processed += 1;
     }
-    manifestItems.set(code, {
-      code,
-      source: path.relative(ROOT_DIR, input).replaceAll(path.sep, "/"),
-      outputs: assetOutputs
-    });
   }
 
-  const selectedCodes = Object.keys(selected);
-  const items = selectedCodes.map((code) => manifestItems.get(code)).filter(Boolean);
   await writeJson(MANIFEST_PATH, {
-    version: 1,
+    version: 2,
     generatedAt: new Date().toISOString(),
     targetBytes: TARGET_BYTES,
-    complete: selectedCodes.length === Object.keys(types).length && items.length === selectedCodes.length,
-    items
+    complete: Object.keys(types).every((code) => characters[code]?.f?.exists && characters[code]?.m?.exists),
+    characters
   });
-  console.log(`${path.relative(process.cwd(), MANIFEST_PATH)}: ${items.length}タイプ`);
+  console.log(`${path.relative(process.cwd(), MANIFEST_PATH)}: ${processed}姿を更新`);
 }
 
 main().catch((error) => {

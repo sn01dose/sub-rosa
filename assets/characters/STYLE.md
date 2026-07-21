@@ -1,4 +1,6 @@
-# SUB ROSA Character System v2
+# SUB ROSA Character System v3 / 32-character pairs
+
+16タイプそれぞれを淑女版 `_f` と紳士版 `_m` の対で描く。タイプ固有の色・モチーフ・アーチ紋章・背景小景・4軸の所作・衣装コンセプトは対の間で固定し、成人の顔立ち、体格、髪の性別方向だけを変える。片方を単なるまつ毛差分や双子化にせず、同じ寓意を担う別人物として成立させる。FTRDは淑女をプリンセス、紳士をプリンスとして、甘さとピンクの強さを同等に保つ。
 
 16タイプを「同じ絵師・同じシリーズの別人」として描き分けるための制作ガイドです。確定済み `FGPD` の頭身・線・水彩・金枠だけをシリーズ共通要素とし、人物の髪、衣装、ポーズ、表情、背景小景、紋章はタイプ別に変えます。生成時の機械可読な正本は `tools/character-specs.json` です。
 
@@ -91,7 +93,7 @@
 ## 8. 書き出し
 
 - 選定元: `tools/out/<output-set>/{TYPE_CODE}/candidate-{N}.png`。
-- 主表示: `assets/characters/{TYPE_CODE}.webp`、2倍版: `{TYPE_CODE}@2x.webp`。
+- 主表示: `assets/characters/{TYPE_CODE}_f.webp` / `{TYPE_CODE}_m.webp`、2倍版: `{TYPE_CODE}_f@2x.webp` / `{TYPE_CODE}_m@2x.webp`。無印WebPは使わない。
 - 透明余白をトリムし、共通パディングで640×840 / 1280×1680へ正規化する。
 - WebPが欠落した場合は同名SVG、さらに `assets/adult-silhouette.svg` へフォールバックする。
 - 全身着衣、成人、中性的、非露骨。学校制服、下着、過度な露出、暴力、文字、透かしは禁止。

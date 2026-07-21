@@ -610,7 +610,7 @@ p { margin: 0 0 var(--space-3); }
 }
 
 .character-stage {
-  z-index: 1;
+  z-index: auto;
   padding: 24px 0 0 18px;
   overflow: hidden;
 }
@@ -622,6 +622,38 @@ p { margin: 0 0 var(--space-3); }
   object-position: center bottom;
   filter: drop-shadow(10px 13px 18px rgba(36, 26, 46, .2));
 }
+
+.character-appearance {
+  position: absolute;
+  z-index: 5;
+  left: 50%;
+  bottom: 16px;
+  display: inline-flex;
+  padding: 3px;
+  border: 1px solid rgba(111, 48, 76, .34);
+  border-radius: var(--radius-pill);
+  background: rgba(239, 230, 218, .9);
+  box-shadow: var(--shadow-sm);
+  transform: translateX(-50%);
+  backdrop-filter: blur(7px);
+}
+
+.character-appearance button {
+  min-width: 64px;
+  min-height: 48px;
+  padding: 8px 14px;
+  border: 0;
+  border-radius: var(--radius-pill);
+  color: var(--wine);
+  background: transparent;
+  font: 700 13px/1 var(--serif);
+  cursor: pointer;
+}
+
+.character-appearance button[aria-pressed="true"] { color: #fffaf2; background: var(--wine); }
+.character-appearance button:hover { color: #fffaf2; background: var(--rose); }
+.character-appearance button:active { transform: translateY(1px); }
+.character-appearance button:focus-visible { outline: 3px solid var(--gold); outline-offset: 2px; }
 
 .result-card-copy {
   align-self: end;
@@ -694,4 +726,6 @@ p { margin: 0 0 var(--space-3); }
   .result-card { border-color: CanvasText; box-shadow: none; }
   .result-card::before { border-color: CanvasText; box-shadow: none; }
   .result-card-copy { background: Canvas; }
+  .character-appearance, .character-appearance button { border: 1px solid CanvasText; }
+  .character-appearance button[aria-pressed="true"] { color: HighlightText; background: Highlight; }
 }

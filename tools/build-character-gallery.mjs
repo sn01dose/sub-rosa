@@ -1,11 +1,12 @@
 import fs from "node:fs/promises";
 import path from "node:path";
 import { pathToFileURL } from "node:url";
-import { OUT_DIR, SELECTED_PATH, escapeHtml, loadTypes, readJson } from "./lib/character-data.mjs";
+import { OUT_DIR, SELECTED_32_PATH, SELECTED_PATH, escapeHtml, loadTypes, readJson, selectionValue } from "./lib/character-data.mjs";
 
 export async function buildGallery({ outDir = OUT_DIR } = {}) {
   const types = await loadTypes();
-  const selected = await readJson(SELECTED_PATH, {});
+  const appearance = new Set(["f", "m"]).has(path.basename(outDir).toLowerCase()) ? path.basename(outDir).toLowerCase() : null;
+  const selected = appearance ? await readJson(SELECTED_32_PATH, {}) : await readJson(SELECTED_PATH, {});
   const qa = await readJson(path.join(outDir, "qa.json"), {});
   const outputPrefix = path.relative(OUT_DIR, outDir).replaceAll("\\", "/");
   if (outputPrefix.startsWith("..")) throw new Error("候補一覧の出力先はtools/out内にしてください。");
@@ -29,13 +30,13 @@ export async function buildGallery({ outDir = OUT_DIR } = {}) {
       <div class="candidates">
         ${files.map((file) => {
           const review = qa[type.code]?.[file] || {};
-          const selectionValue = outputPrefix ? `${outputPrefix}/${type.code}/${file}` : file;
-          const isSelected = selected[type.code] === selectionValue;
+          const candidateValue = outputPrefix ? `${outputPrefix}/${type.code}/${file}` : file;
+          const isSelected = appearance ? selectionValue(selected, type.code, appearance) === candidateValue : selected[type.code] === candidateValue;
           const flags = Array.isArray(review.flags) ? review.flags : [];
           const reviewStatus = ["recommended", "approved"].includes(review.status) ? review.status : "";
           const reviewLabel = review.status === "approved" ? "選定済み" : review.status === "recommended" ? "Codex推奨" : "";
           return `<article class="candidate ${flags.length ? "has-flags" : ""} ${reviewStatus}">
-            <label class="image-wrap"><img src="${type.code}/${file}" alt="${escapeHtml(type.name)} ${escapeHtml(file)}"><span class="pick"><input type="radio" name="${type.code}" value="${selectionValue}" ${isSelected ? "checked" : ""}> この候補を選ぶ</span></label>
+            <label class="image-wrap"><img src="${type.code}/${file}" alt="${escapeHtml(type.name)} ${escapeHtml(file)}"><span class="pick"><input type="radio" name="${type.code}" value="${candidateValue}" ${isSelected ? "checked" : ""}> この候補を選ぶ</span></label>
             <div class="candidate-copy"><h3>${escapeHtml(file)}${reviewLabel ? `<span class="review-badge">${reviewLabel}</span>` : ""}</h3>
               ${flags.length ? `<ul class="flags">${flags.map((flag) => `<li>${escapeHtml(flag)}</li>`).join("")}</ul>` : `<p class="pass">自動フラグなし（最終判断は目視）</p>`}
               ${review.note ? `<p class="note">${escapeHtml(review.note)}</p>` : ""}
@@ -46,7 +47,7 @@ export async function buildGallery({ outDir = OUT_DIR } = {}) {
       </div>
     </section>`).join("");
 
-  const data = JSON.stringify({ selected, qa }).replaceAll("<", "\\u003c");
+  const data = JSON.stringify({ selected, qa, appearance }).replaceAll("<", "\\u003c");
   const html = `<!doctype html>
 <html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>SUB ROSA character review</title>
@@ -56,7 +57,7 @@ export async function buildGallery({ outDir = OUT_DIR } = {}) {
 <section class="intro"><p class="eyebrow">LOCAL REVIEW ONLY</p><h1>SUB ROSA character review</h1><p>各タイプから1枚を選びます。チェック柄は透明部分です。指の破綻、文字混入、露出、年齢感、シリーズからの逸脱を100%表示でも確認してください。</p></section>
 <div class="toolbar"><button id="download">selected.json を保存</button><button class="secondary" id="clear" type="button">選択を解除</button><span class="status" id="status" aria-live="polite"></span></div>
 ${cards || '<p>候補画像がまだありません。generate-characters.mjs を実行してください。</p>'}
-</main><script>const initial=${data};const storageKey="sub-rosa-character-review";let state={selected:{...initial.selected},memos:{}};try{state={...state,...JSON.parse(localStorage.getItem(storageKey)||"{}")}}catch{}const status=document.getElementById("status");function save(){document.querySelectorAll('input[type="radio"]:checked').forEach(input=>state.selected[input.name]=input.value);document.querySelectorAll("textarea[data-memo]").forEach(input=>state.memos[input.dataset.memo]=input.value);localStorage.setItem(storageKey,JSON.stringify(state));status.textContent=Object.keys(state.selected).length+"タイプ選択済み";setTimeout(()=>status.textContent="",1800)}document.querySelectorAll('input[type="radio"]').forEach(input=>{if(state.selected[input.name]===input.value)input.checked=true;input.addEventListener("change",save)});document.querySelectorAll("textarea[data-memo]").forEach(input=>{input.value=state.memos[input.dataset.memo]||"";input.addEventListener("input",save)});document.getElementById("download").addEventListener("click",()=>{save();const blob=new Blob([JSON.stringify(state.selected,null,2)+"\\n"],{type:"application/json"});const link=document.createElement("a");link.href=URL.createObjectURL(blob);link.download="selected.json";link.click();setTimeout(()=>URL.revokeObjectURL(link.href),1000)});document.getElementById("clear").addEventListener("click",()=>{state={selected:{},memos:{}};localStorage.removeItem(storageKey);document.querySelectorAll('input[type="radio"]').forEach(input=>input.checked=false);document.querySelectorAll("textarea").forEach(input=>input.value="");status.textContent="選択を解除しました"});</script></body></html>`;
+</main><script>const initial=${data};const appearance=initial.appearance;const storageKey="sub-rosa-character-review"+(appearance?"-"+appearance:"");let state={selected:structuredClone(initial.selected),memos:{}};try{state={...state,...JSON.parse(localStorage.getItem(storageKey)||"{}")}}catch{}const status=document.getElementById("status");function current(code){return appearance?state.selected[code]?.[appearance]:state.selected[code]}function save(){document.querySelectorAll('input[type="radio"]:checked').forEach(input=>{if(appearance){state.selected[input.name]||={f:null,m:null};state.selected[input.name][appearance]=input.value}else state.selected[input.name]=input.value});document.querySelectorAll("textarea[data-memo]").forEach(input=>state.memos[input.dataset.memo]=input.value);localStorage.setItem(storageKey,JSON.stringify(state));status.textContent=document.querySelectorAll('input[type="radio"]:checked').length+"タイプ選択済み";setTimeout(()=>status.textContent="",1800)}document.querySelectorAll('input[type="radio"]').forEach(input=>{if(current(input.name)===input.value)input.checked=true;input.addEventListener("change",save)});document.querySelectorAll("textarea[data-memo]").forEach(input=>{input.value=state.memos[input.dataset.memo]||"";input.addEventListener("input",save)});document.getElementById("download").addEventListener("click",()=>{save();const blob=new Blob([JSON.stringify(state.selected,null,2)+"\\n"],{type:"application/json"});const link=document.createElement("a");link.href=URL.createObjectURL(blob);link.download=appearance?"selected-32.json":"selected.json";link.click();setTimeout(()=>URL.revokeObjectURL(link.href),1000)});document.getElementById("clear").addEventListener("click",()=>{state={selected:structuredClone(initial.selected),memos:{}};localStorage.removeItem(storageKey);document.querySelectorAll('input[type="radio"]').forEach(input=>input.checked=false);document.querySelectorAll("textarea").forEach(input=>input.value="");status.textContent="候補側の選択を解除しました"});</script></body></html>`;
 
   await fs.writeFile(path.join(outDir, "index.html"), html, "utf8");
   return { groups: groups.length, candidates: groups.reduce((sum, group) => sum + group.files.length, 0) };

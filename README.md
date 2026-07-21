@@ -100,26 +100,37 @@ node tools/build-character-contact.mjs --source v2
 
 参照なし版を採用する場合は上の `v2` コマンドを使います。参照編集版を採用する場合は `--output-set v2-edit --reference tools/out/FGPD/candidate-1.png` へ置き換えます。同じ出力セットを分割実行しても、既存の `manifest.json` 項目は維持・統合されます。
 
-### 選定とWebP化
+### 32体（淑女／紳士）への移行と選定
 
-`tools/out/v2/index.html` で採用候補を選び、「selected.jsonを保存」から書き出した内容を `tools/selected.json` に置きます。v2候補は出力セットを含む安全な相対パスで記録されます。
+確定画像は `_f`（淑女）／`_m`（紳士）で管理し、無印WebPは使いません。`tools/selected.json` と `tools/selected-32.json` は、タイプごとに確定元を追跡します。未選定側は `null` のままにします。
 
 ```json
 {
-  "FGPD": "candidate-1.png",
-  "FTRD": "v2-edit/FTRD/candidate-2.png"
+  "FGPD": { "f": null, "m": "candidate-1.png" },
+  "FTRD": { "f": "v2-edit/FTRD/candidate-2.png", "m": null }
 }
 ```
 
-選定画像の透過余白をトリムし、共通パディングへ揃えて通常版と2倍版を作ります。
+不足側は同じタイプの確定PNGを参照するImages Editで生成します。淑女版は `tools/out/f/{CODE}/`、紳士版は `tools/out/m/{CODE}/` へ各3候補を保存します。
 
 ```powershell
-node tools/finalize-characters.mjs
+node --use-system-ca tools/generate-characters.mjs --appearance f --code LGRC,LGRD,LGPC,LGPD,LTRC,LTRD,LTPC,LTPD,FGRC,FGPC,FGPD,FTRC,FTPD --count 3
+node --use-system-ca tools/generate-characters.mjs --appearance m --code FGRD,FTRD,FTPC --count 3
+node tools/build-character-contact-32.mjs
 ```
 
-出力名は `assets/characters/{TYPE_CODE}.webp` と `assets/characters/{TYPE_CODE}@2x.webp` です。選定元・寸法・容量・透過状態は `assets/characters/manifest.json` に記録されます。アプリは通常版WebP、同名SVG、`assets/adult-silhouette.svg` の順でフォールバックします。
+`tools/out/contact-32.html` では、各タイプの淑女／紳士を左右比較し、性別ごとの16体遠目一覧も確認できます。採用候補を選び「selected-32.jsonを保存」した後、内容を `tools/selected-32.json` へ反映します。
 
-主な生成オプションは `--dry-run`、`--force`、`--output-set NAME`、`--reference PNG`、`--model MODEL_ID`、`--quality low|medium|high|auto` です。
+選定後の別作業で、透過余白をトリムし、共通パディングへ揃えて通常版と2倍版を作ります。
+
+```powershell
+node tools/finalize-characters.mjs --appearance f
+node tools/finalize-characters.mjs --appearance m
+```
+
+出力名は `assets/characters/{TYPE_CODE}_f.webp` / `_m.webp` と、それぞれの `@2x` 版です。選定元・寸法・容量・透過状態は `assets/characters/manifest.json` の `{code}.{f|m}` にマージされます。アプリは「選択姿→反対姿→同名SVG→`assets/adult-silhouette.svg`」の順でフォールバックし、片方しか存在しない移行中は姿トグルを表示しません。
+
+主な生成オプションは `--appearance f|m`、`--dry-run`、`--force`、`--output-set NAME`、`--reference PNG`、`--model MODEL_ID`、`--quality low|medium|high|auto` です。
 
 ## GitHub Pages公開
 

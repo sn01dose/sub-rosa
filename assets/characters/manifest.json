@@ -1,424 +1,872 @@
 {
-  "version": 1,
-  "generatedAt": "2026-07-20T09:54:19.543Z",
+  "version": 2,
+  "generatedAt": "2026-07-21T19:16:32.869Z",
   "targetBytes": 153600,
   "complete": true,
-  "items": [
-    {
-      "code": "LGRC",
-      "source": "tools/out/v2/LGRC/candidate-2.png",
-      "outputs": [
-        {
-          "file": "assets/characters/LGRC.webp",
-          "width": 640,
-          "height": 840,
-          "bytes": 142584,
-          "hasAlpha": true,
-          "hasTransparency": true,
-          "quality": 78,
-          "alphaQuality": 96
-        },
-        {
-          "file": "assets/characters/LGRC@2x.webp",
-          "width": 1280,
-          "height": 1680,
-          "bytes": 142804,
-          "hasAlpha": true,
-          "hasTransparency": true,
-          "quality": 34,
-          "alphaQuality": 60
-        }
-      ]
+  "characters": {
+    "LGRC": {
+      "f": {
+        "exists": true,
+        "source": "tools/out/f/LGRC/candidate-1.png",
+        "outputs": [
+          {
+            "file": "assets/characters/LGRC_f.webp",
+            "width": 640,
+            "height": 840,
+            "bytes": 128434,
+            "hasAlpha": true,
+            "hasTransparency": true,
+            "quality": 88,
+            "alphaQuality": 100
+          },
+          {
+            "file": "assets/characters/LGRC_f@2x.webp",
+            "width": 1280,
+            "height": 1680,
+            "bytes": 91024,
+            "hasAlpha": true,
+            "hasTransparency": true,
+            "quality": 40,
+            "alphaQuality": 68
+          }
+        ]
+      },
+      "m": {
+        "exists": true,
+        "source": "tools/out/v2/LGRC/candidate-2.png",
+        "outputs": [
+          {
+            "file": "assets/characters/LGRC_m.webp",
+            "width": 640,
+            "height": 840,
+            "bytes": 142584,
+            "hasAlpha": true,
+            "hasTransparency": true,
+            "quality": 78,
+            "alphaQuality": 96
+          },
+          {
+            "file": "assets/characters/LGRC_m@2x.webp",
+            "width": 1280,
+            "height": 1680,
+            "bytes": 142804,
+            "hasAlpha": true,
+            "hasTransparency": true,
+            "quality": 34,
+            "alphaQuality": 60
+          }
+        ]
+      }
     },
-    {
-      "code": "LGRD",
-      "source": "tools/out/v2/LGRD/candidate-1.png",
-      "outputs": [
-        {
-          "file": "assets/characters/LGRD.webp",
-          "width": 640,
-          "height": 840,
-          "bytes": 130092,
-          "hasAlpha": true,
-          "hasTransparency": true,
-          "quality": 78,
-          "alphaQuality": 96
-        },
-        {
-          "file": "assets/characters/LGRD@2x.webp",
-          "width": 1280,
-          "height": 1680,
-          "bytes": 129404,
-          "hasAlpha": true,
-          "hasTransparency": true,
-          "quality": 40,
-          "alphaQuality": 68
-        }
-      ]
+    "LGRD": {
+      "f": {
+        "exists": true,
+        "source": "tools/out/f/LGRD/candidate-2.png",
+        "outputs": [
+          {
+            "file": "assets/characters/LGRD_f.webp",
+            "width": 640,
+            "height": 840,
+            "bytes": 142624,
+            "hasAlpha": true,
+            "hasTransparency": true,
+            "quality": 88,
+            "alphaQuality": 100
+          },
+          {
+            "file": "assets/characters/LGRD_f@2x.webp",
+            "width": 1280,
+            "height": 1680,
+            "bytes": 109510,
+            "hasAlpha": true,
+            "hasTransparency": true,
+            "quality": 40,
+            "alphaQuality": 68
+          }
+        ]
+      },
+      "m": {
+        "exists": true,
+        "source": "tools/out/v2/LGRD/candidate-1.png",
+        "outputs": [
+          {
+            "file": "assets/characters/LGRD_m.webp",
+            "width": 640,
+            "height": 840,
+            "bytes": 130092,
+            "hasAlpha": true,
+            "hasTransparency": true,
+            "quality": 78,
+            "alphaQuality": 96
+          },
+          {
+            "file": "assets/characters/LGRD_m@2x.webp",
+            "width": 1280,
+            "height": 1680,
+            "bytes": 129404,
+            "hasAlpha": true,
+            "hasTransparency": true,
+            "quality": 40,
+            "alphaQuality": 68
+          }
+        ]
+      }
     },
-    {
-      "code": "LGPC",
-      "source": "tools/out/v2/LGPC/candidate-3.png",
-      "outputs": [
-        {
-          "file": "assets/characters/LGPC.webp",
-          "width": 640,
-          "height": 840,
-          "bytes": 150570,
-          "hasAlpha": true,
-          "hasTransparency": true,
-          "quality": 88,
-          "alphaQuality": 100
-        },
-        {
-          "file": "assets/characters/LGPC@2x.webp",
-          "width": 1280,
-          "height": 1680,
-          "bytes": 135020,
-          "hasAlpha": true,
-          "hasTransparency": true,
-          "quality": 40,
-          "alphaQuality": 68
-        }
-      ]
+    "LGPC": {
+      "f": {
+        "exists": true,
+        "source": "tools/out/f/LGPC/candidate-3.png",
+        "outputs": [
+          {
+            "file": "assets/characters/LGPC_f.webp",
+            "width": 640,
+            "height": 840,
+            "bytes": 135832,
+            "hasAlpha": true,
+            "hasTransparency": true,
+            "quality": 78,
+            "alphaQuality": 96
+          },
+          {
+            "file": "assets/characters/LGPC_f@2x.webp",
+            "width": 1280,
+            "height": 1680,
+            "bytes": 138556,
+            "hasAlpha": true,
+            "hasTransparency": true,
+            "quality": 22,
+            "alphaQuality": 44
+          }
+        ]
+      },
+      "m": {
+        "exists": true,
+        "source": "tools/out/v2/LGPC/candidate-3.png",
+        "outputs": [
+          {
+            "file": "assets/characters/LGPC_m.webp",
+            "width": 640,
+            "height": 840,
+            "bytes": 150570,
+            "hasAlpha": true,
+            "hasTransparency": true,
+            "quality": 88,
+            "alphaQuality": 100
+          },
+          {
+            "file": "assets/characters/LGPC_m@2x.webp",
+            "width": 1280,
+            "height": 1680,
+            "bytes": 135020,
+            "hasAlpha": true,
+            "hasTransparency": true,
+            "quality": 40,
+            "alphaQuality": 68
+          }
+        ]
+      }
     },
-    {
-      "code": "LGPD",
-      "source": "tools/out/v2/LGPD/candidate-3.png",
-      "outputs": [
-        {
-          "file": "assets/characters/LGPD.webp",
-          "width": 640,
-          "height": 840,
-          "bytes": 151918,
-          "hasAlpha": true,
-          "hasTransparency": true,
-          "quality": 88,
-          "alphaQuality": 100
-        },
-        {
-          "file": "assets/characters/LGPD@2x.webp",
-          "width": 1280,
-          "height": 1680,
-          "bytes": 130024,
-          "hasAlpha": true,
-          "hasTransparency": true,
-          "quality": 40,
-          "alphaQuality": 68
-        }
-      ]
+    "LGPD": {
+      "f": {
+        "exists": true,
+        "source": "tools/out/f/LGPD/candidate-2.png",
+        "outputs": [
+          {
+            "file": "assets/characters/LGPD_f.webp",
+            "width": 640,
+            "height": 840,
+            "bytes": 125192,
+            "hasAlpha": true,
+            "hasTransparency": true,
+            "quality": 88,
+            "alphaQuality": 100
+          },
+          {
+            "file": "assets/characters/LGPD_f@2x.webp",
+            "width": 1280,
+            "height": 1680,
+            "bytes": 95314,
+            "hasAlpha": true,
+            "hasTransparency": true,
+            "quality": 40,
+            "alphaQuality": 68
+          }
+        ]
+      },
+      "m": {
+        "exists": true,
+        "source": "tools/out/v2/LGPD/candidate-3.png",
+        "outputs": [
+          {
+            "file": "assets/characters/LGPD_m.webp",
+            "width": 640,
+            "height": 840,
+            "bytes": 151918,
+            "hasAlpha": true,
+            "hasTransparency": true,
+            "quality": 88,
+            "alphaQuality": 100
+          },
+          {
+            "file": "assets/characters/LGPD_m@2x.webp",
+            "width": 1280,
+            "height": 1680,
+            "bytes": 130024,
+            "hasAlpha": true,
+            "hasTransparency": true,
+            "quality": 40,
+            "alphaQuality": 68
+          }
+        ]
+      }
     },
-    {
-      "code": "LTRC",
-      "source": "tools/out/v2/LTRC/candidate-2.png",
-      "outputs": [
-        {
-          "file": "assets/characters/LTRC.webp",
-          "width": 640,
-          "height": 840,
-          "bytes": 139116,
-          "hasAlpha": true,
-          "hasTransparency": true,
-          "quality": 78,
-          "alphaQuality": 96
-        },
-        {
-          "file": "assets/characters/LTRC@2x.webp",
-          "width": 1280,
-          "height": 1680,
-          "bytes": 132850,
-          "hasAlpha": true,
-          "hasTransparency": true,
-          "quality": 40,
-          "alphaQuality": 68
-        }
-      ]
+    "LTRC": {
+      "f": {
+        "exists": true,
+        "source": "tools/out/f/LTRC/candidate-2.png",
+        "outputs": [
+          {
+            "file": "assets/characters/LTRC_f.webp",
+            "width": 640,
+            "height": 840,
+            "bytes": 144360,
+            "hasAlpha": true,
+            "hasTransparency": true,
+            "quality": 88,
+            "alphaQuality": 100
+          },
+          {
+            "file": "assets/characters/LTRC_f@2x.webp",
+            "width": 1280,
+            "height": 1680,
+            "bytes": 98554,
+            "hasAlpha": true,
+            "hasTransparency": true,
+            "quality": 40,
+            "alphaQuality": 68
+          }
+        ]
+      },
+      "m": {
+        "exists": true,
+        "source": "tools/out/v2/LTRC/candidate-2.png",
+        "outputs": [
+          {
+            "file": "assets/characters/LTRC_m.webp",
+            "width": 640,
+            "height": 840,
+            "bytes": 139116,
+            "hasAlpha": true,
+            "hasTransparency": true,
+            "quality": 78,
+            "alphaQuality": 96
+          },
+          {
+            "file": "assets/characters/LTRC_m@2x.webp",
+            "width": 1280,
+            "height": 1680,
+            "bytes": 132850,
+            "hasAlpha": true,
+            "hasTransparency": true,
+            "quality": 40,
+            "alphaQuality": 68
+          }
+        ]
+      }
     },
-    {
-      "code": "LTRD",
-      "source": "tools/out/v2/LTRD/candidate-3.png",
-      "outputs": [
-        {
-          "file": "assets/characters/LTRD.webp",
-          "width": 640,
-          "height": 840,
-          "bytes": 135062,
-          "hasAlpha": true,
-          "hasTransparency": true,
-          "quality": 78,
-          "alphaQuality": 96
-        },
-        {
-          "file": "assets/characters/LTRD@2x.webp",
-          "width": 1280,
-          "height": 1680,
-          "bytes": 129228,
-          "hasAlpha": true,
-          "hasTransparency": true,
-          "quality": 40,
-          "alphaQuality": 68
-        }
-      ]
+    "LTRD": {
+      "f": {
+        "exists": true,
+        "source": "tools/out/f/LTRD/candidate-2.png",
+        "outputs": [
+          {
+            "file": "assets/characters/LTRD_f.webp",
+            "width": 640,
+            "height": 840,
+            "bytes": 134526,
+            "hasAlpha": true,
+            "hasTransparency": true,
+            "quality": 78,
+            "alphaQuality": 96
+          },
+          {
+            "file": "assets/characters/LTRD_f@2x.webp",
+            "width": 1280,
+            "height": 1680,
+            "bytes": 137514,
+            "hasAlpha": true,
+            "hasTransparency": true,
+            "quality": 40,
+            "alphaQuality": 68
+          }
+        ]
+      },
+      "m": {
+        "exists": true,
+        "source": "tools/out/v2/LTRD/candidate-3.png",
+        "outputs": [
+          {
+            "file": "assets/characters/LTRD_m.webp",
+            "width": 640,
+            "height": 840,
+            "bytes": 135062,
+            "hasAlpha": true,
+            "hasTransparency": true,
+            "quality": 78,
+            "alphaQuality": 96
+          },
+          {
+            "file": "assets/characters/LTRD_m@2x.webp",
+            "width": 1280,
+            "height": 1680,
+            "bytes": 129228,
+            "hasAlpha": true,
+            "hasTransparency": true,
+            "quality": 40,
+            "alphaQuality": 68
+          }
+        ]
+      }
     },
-    {
-      "code": "LTPC",
-      "source": "tools/out/v2/LTPC/candidate-2.png",
-      "outputs": [
-        {
-          "file": "assets/characters/LTPC.webp",
-          "width": 640,
-          "height": 840,
-          "bytes": 132740,
-          "hasAlpha": true,
-          "hasTransparency": true,
-          "quality": 78,
-          "alphaQuality": 96
-        },
-        {
-          "file": "assets/characters/LTPC@2x.webp",
-          "width": 1280,
-          "height": 1680,
-          "bytes": 137766,
-          "hasAlpha": true,
-          "hasTransparency": true,
-          "quality": 40,
-          "alphaQuality": 68
-        }
-      ]
+    "LTPC": {
+      "f": {
+        "exists": true,
+        "source": "tools/out/f/LTPC/candidate-1.png",
+        "outputs": [
+          {
+            "file": "assets/characters/LTPC_f.webp",
+            "width": 640,
+            "height": 840,
+            "bytes": 151672,
+            "hasAlpha": true,
+            "hasTransparency": true,
+            "quality": 88,
+            "alphaQuality": 100
+          },
+          {
+            "file": "assets/characters/LTPC_f@2x.webp",
+            "width": 1280,
+            "height": 1680,
+            "bytes": 117296,
+            "hasAlpha": true,
+            "hasTransparency": true,
+            "quality": 40,
+            "alphaQuality": 68
+          }
+        ]
+      },
+      "m": {
+        "exists": true,
+        "source": "tools/out/v2/LTPC/candidate-2.png",
+        "outputs": [
+          {
+            "file": "assets/characters/LTPC_m.webp",
+            "width": 640,
+            "height": 840,
+            "bytes": 132740,
+            "hasAlpha": true,
+            "hasTransparency": true,
+            "quality": 78,
+            "alphaQuality": 96
+          },
+          {
+            "file": "assets/characters/LTPC_m@2x.webp",
+            "width": 1280,
+            "height": 1680,
+            "bytes": 137766,
+            "hasAlpha": true,
+            "hasTransparency": true,
+            "quality": 40,
+            "alphaQuality": 68
+          }
+        ]
+      }
     },
-    {
-      "code": "LTPD",
-      "source": "tools/out/v2/LTPD/candidate-3.png",
-      "outputs": [
-        {
-          "file": "assets/characters/LTPD.webp",
-          "width": 640,
-          "height": 840,
-          "bytes": 144730,
-          "hasAlpha": true,
-          "hasTransparency": true,
-          "quality": 88,
-          "alphaQuality": 100
-        },
-        {
-          "file": "assets/characters/LTPD@2x.webp",
-          "width": 1280,
-          "height": 1680,
-          "bytes": 114458,
-          "hasAlpha": true,
-          "hasTransparency": true,
-          "quality": 40,
-          "alphaQuality": 68
-        }
-      ]
+    "LTPD": {
+      "f": {
+        "exists": true,
+        "source": "tools/out/f/LTPD/candidate-3.png",
+        "outputs": [
+          {
+            "file": "assets/characters/LTPD_f.webp",
+            "width": 640,
+            "height": 840,
+            "bytes": 120490,
+            "hasAlpha": true,
+            "hasTransparency": true,
+            "quality": 88,
+            "alphaQuality": 100
+          },
+          {
+            "file": "assets/characters/LTPD_f@2x.webp",
+            "width": 1280,
+            "height": 1680,
+            "bytes": 99354,
+            "hasAlpha": true,
+            "hasTransparency": true,
+            "quality": 40,
+            "alphaQuality": 68
+          }
+        ]
+      },
+      "m": {
+        "exists": true,
+        "source": "tools/out/v2/LTPD/candidate-3.png",
+        "outputs": [
+          {
+            "file": "assets/characters/LTPD_m.webp",
+            "width": 640,
+            "height": 840,
+            "bytes": 144730,
+            "hasAlpha": true,
+            "hasTransparency": true,
+            "quality": 88,
+            "alphaQuality": 100
+          },
+          {
+            "file": "assets/characters/LTPD_m@2x.webp",
+            "width": 1280,
+            "height": 1680,
+            "bytes": 114458,
+            "hasAlpha": true,
+            "hasTransparency": true,
+            "quality": 40,
+            "alphaQuality": 68
+          }
+        ]
+      }
     },
-    {
-      "code": "FGRC",
-      "source": "tools/out/v2/FGRC/candidate-2.png",
-      "outputs": [
-        {
-          "file": "assets/characters/FGRC.webp",
-          "width": 640,
-          "height": 840,
-          "bytes": 142034,
-          "hasAlpha": true,
-          "hasTransparency": true,
-          "quality": 88,
-          "alphaQuality": 100
-        },
-        {
-          "file": "assets/characters/FGRC@2x.webp",
-          "width": 1280,
-          "height": 1680,
-          "bytes": 115048,
-          "hasAlpha": true,
-          "hasTransparency": true,
-          "quality": 40,
-          "alphaQuality": 68
-        }
-      ]
+    "FGRC": {
+      "f": {
+        "exists": true,
+        "source": "tools/out/f/FGRC/candidate-1.png",
+        "outputs": [
+          {
+            "file": "assets/characters/FGRC_f.webp",
+            "width": 640,
+            "height": 840,
+            "bytes": 120658,
+            "hasAlpha": true,
+            "hasTransparency": true,
+            "quality": 88,
+            "alphaQuality": 100
+          },
+          {
+            "file": "assets/characters/FGRC_f@2x.webp",
+            "width": 1280,
+            "height": 1680,
+            "bytes": 89572,
+            "hasAlpha": true,
+            "hasTransparency": true,
+            "quality": 40,
+            "alphaQuality": 68
+          }
+        ]
+      },
+      "m": {
+        "exists": true,
+        "source": "tools/out/v2/FGRC/candidate-2.png",
+        "outputs": [
+          {
+            "file": "assets/characters/FGRC_m.webp",
+            "width": 640,
+            "height": 840,
+            "bytes": 142034,
+            "hasAlpha": true,
+            "hasTransparency": true,
+            "quality": 88,
+            "alphaQuality": 100
+          },
+          {
+            "file": "assets/characters/FGRC_m@2x.webp",
+            "width": 1280,
+            "height": 1680,
+            "bytes": 115048,
+            "hasAlpha": true,
+            "hasTransparency": true,
+            "quality": 40,
+            "alphaQuality": 68
+          }
+        ]
+      }
     },
-    {
-      "code": "FGRD",
-      "source": "tools/out/v2/FGRD/candidate-1.png",
-      "outputs": [
-        {
-          "file": "assets/characters/FGRD.webp",
-          "width": 640,
-          "height": 840,
-          "bytes": 129894,
-          "hasAlpha": true,
-          "hasTransparency": true,
-          "quality": 78,
-          "alphaQuality": 96
-        },
-        {
-          "file": "assets/characters/FGRD@2x.webp",
-          "width": 1280,
-          "height": 1680,
-          "bytes": 118532,
-          "hasAlpha": true,
-          "hasTransparency": true,
-          "quality": 40,
-          "alphaQuality": 68
-        }
-      ]
+    "FGRD": {
+      "f": {
+        "exists": true,
+        "source": "tools/out/v2/FGRD/candidate-1.png",
+        "outputs": [
+          {
+            "file": "assets/characters/FGRD_f.webp",
+            "width": 640,
+            "height": 840,
+            "bytes": 129894,
+            "hasAlpha": true,
+            "hasTransparency": true,
+            "quality": 78,
+            "alphaQuality": 96
+          },
+          {
+            "file": "assets/characters/FGRD_f@2x.webp",
+            "width": 1280,
+            "height": 1680,
+            "bytes": 118532,
+            "hasAlpha": true,
+            "hasTransparency": true,
+            "quality": 40,
+            "alphaQuality": 68
+          }
+        ]
+      },
+      "m": {
+        "exists": true,
+        "source": "tools/out/m/FGRD/candidate-1.png",
+        "outputs": [
+          {
+            "file": "assets/characters/FGRD_m.webp",
+            "width": 640,
+            "height": 840,
+            "bytes": 138498,
+            "hasAlpha": true,
+            "hasTransparency": true,
+            "quality": 88,
+            "alphaQuality": 100
+          },
+          {
+            "file": "assets/characters/FGRD_m@2x.webp",
+            "width": 1280,
+            "height": 1680,
+            "bytes": 106946,
+            "hasAlpha": true,
+            "hasTransparency": true,
+            "quality": 40,
+            "alphaQuality": 68
+          }
+        ]
+      }
     },
-    {
-      "code": "FGPC",
-      "source": "tools/out/v2/FGPC/candidate-1.png",
-      "outputs": [
-        {
-          "file": "assets/characters/FGPC.webp",
-          "width": 640,
-          "height": 840,
-          "bytes": 134298,
-          "hasAlpha": true,
-          "hasTransparency": true,
-          "quality": 88,
-          "alphaQuality": 100
-        },
-        {
-          "file": "assets/characters/FGPC@2x.webp",
-          "width": 1280,
-          "height": 1680,
-          "bytes": 87588,
-          "hasAlpha": true,
-          "hasTransparency": true,
-          "quality": 40,
-          "alphaQuality": 68
-        }
-      ]
+    "FGPC": {
+      "f": {
+        "exists": true,
+        "source": "tools/out/f/FGPC/candidate-1.png",
+        "outputs": [
+          {
+            "file": "assets/characters/FGPC_f.webp",
+            "width": 640,
+            "height": 840,
+            "bytes": 109816,
+            "hasAlpha": true,
+            "hasTransparency": true,
+            "quality": 88,
+            "alphaQuality": 100
+          },
+          {
+            "file": "assets/characters/FGPC_f@2x.webp",
+            "width": 1280,
+            "height": 1680,
+            "bytes": 72172,
+            "hasAlpha": true,
+            "hasTransparency": true,
+            "quality": 40,
+            "alphaQuality": 68
+          }
+        ]
+      },
+      "m": {
+        "exists": true,
+        "source": "tools/out/v2/FGPC/candidate-1.png",
+        "outputs": [
+          {
+            "file": "assets/characters/FGPC_m.webp",
+            "width": 640,
+            "height": 840,
+            "bytes": 134298,
+            "hasAlpha": true,
+            "hasTransparency": true,
+            "quality": 88,
+            "alphaQuality": 100
+          },
+          {
+            "file": "assets/characters/FGPC_m@2x.webp",
+            "width": 1280,
+            "height": 1680,
+            "bytes": 87588,
+            "hasAlpha": true,
+            "hasTransparency": true,
+            "quality": 40,
+            "alphaQuality": 68
+          }
+        ]
+      }
     },
-    {
-      "code": "FGPD",
-      "source": "tools/out/FGPD/candidate-1.png",
-      "outputs": [
-        {
-          "file": "assets/characters/FGPD.webp",
-          "width": 640,
-          "height": 840,
-          "bytes": 150896,
-          "hasAlpha": true,
-          "hasTransparency": true,
-          "quality": 88,
-          "alphaQuality": 100
-        },
-        {
-          "file": "assets/characters/FGPD@2x.webp",
-          "width": 1280,
-          "height": 1680,
-          "bytes": 124112,
-          "hasAlpha": true,
-          "hasTransparency": true,
-          "quality": 40,
-          "alphaQuality": 68
-        }
-      ]
+    "FGPD": {
+      "f": {
+        "exists": true,
+        "source": "tools/out/f/FGPD/candidate-1.png",
+        "outputs": [
+          {
+            "file": "assets/characters/FGPD_f.webp",
+            "width": 640,
+            "height": 840,
+            "bytes": 147006,
+            "hasAlpha": true,
+            "hasTransparency": true,
+            "quality": 88,
+            "alphaQuality": 100
+          },
+          {
+            "file": "assets/characters/FGPD_f@2x.webp",
+            "width": 1280,
+            "height": 1680,
+            "bytes": 120138,
+            "hasAlpha": true,
+            "hasTransparency": true,
+            "quality": 40,
+            "alphaQuality": 68
+          }
+        ]
+      },
+      "m": {
+        "exists": true,
+        "source": "tools/out/m/FGPD/candidate-1.png",
+        "outputs": [
+          {
+            "file": "assets/characters/FGPD_m.webp",
+            "width": 640,
+            "height": 840,
+            "bytes": 135544,
+            "hasAlpha": true,
+            "hasTransparency": true,
+            "quality": 78,
+            "alphaQuality": 96
+          },
+          {
+            "file": "assets/characters/FGPD_m@2x.webp",
+            "width": 1280,
+            "height": 1680,
+            "bytes": 144492,
+            "hasAlpha": true,
+            "hasTransparency": true,
+            "quality": 40,
+            "alphaQuality": 68
+          }
+        ]
+      }
     },
-    {
-      "code": "FTRC",
-      "source": "tools/out/v2/FTRC/candidate-1.png",
-      "outputs": [
-        {
-          "file": "assets/characters/FTRC.webp",
-          "width": 640,
-          "height": 840,
-          "bytes": 138048,
-          "hasAlpha": true,
-          "hasTransparency": true,
-          "quality": 78,
-          "alphaQuality": 96
-        },
-        {
-          "file": "assets/characters/FTRC@2x.webp",
-          "width": 1280,
-          "height": 1680,
-          "bytes": 119310,
-          "hasAlpha": true,
-          "hasTransparency": true,
-          "quality": 40,
-          "alphaQuality": 68
-        }
-      ]
+    "FTRC": {
+      "f": {
+        "exists": true,
+        "source": "tools/out/f/FTRC/candidate-3.png",
+        "outputs": [
+          {
+            "file": "assets/characters/FTRC_f.webp",
+            "width": 640,
+            "height": 840,
+            "bytes": 145816,
+            "hasAlpha": true,
+            "hasTransparency": true,
+            "quality": 88,
+            "alphaQuality": 100
+          },
+          {
+            "file": "assets/characters/FTRC_f@2x.webp",
+            "width": 1280,
+            "height": 1680,
+            "bytes": 96868,
+            "hasAlpha": true,
+            "hasTransparency": true,
+            "quality": 40,
+            "alphaQuality": 68
+          }
+        ]
+      },
+      "m": {
+        "exists": true,
+        "source": "tools/out/v2/FTRC/candidate-1.png",
+        "outputs": [
+          {
+            "file": "assets/characters/FTRC_m.webp",
+            "width": 640,
+            "height": 840,
+            "bytes": 138048,
+            "hasAlpha": true,
+            "hasTransparency": true,
+            "quality": 78,
+            "alphaQuality": 96
+          },
+          {
+            "file": "assets/characters/FTRC_m@2x.webp",
+            "width": 1280,
+            "height": 1680,
+            "bytes": 119310,
+            "hasAlpha": true,
+            "hasTransparency": true,
+            "quality": 40,
+            "alphaQuality": 68
+          }
+        ]
+      }
     },
-    {
-      "code": "FTRD",
-      "source": "tools/out/v2-edit/FTRD/candidate-2.png",
-      "outputs": [
-        {
-          "file": "assets/characters/FTRD.webp",
-          "width": 640,
-          "height": 840,
-          "bytes": 140874,
-          "hasAlpha": true,
-          "hasTransparency": true,
-          "quality": 88,
-          "alphaQuality": 100
-        },
-        {
-          "file": "assets/characters/FTRD@2x.webp",
-          "width": 1280,
-          "height": 1680,
-          "bytes": 111738,
-          "hasAlpha": true,
-          "hasTransparency": true,
-          "quality": 40,
-          "alphaQuality": 68
-        }
-      ]
+    "FTRD": {
+      "f": {
+        "exists": true,
+        "source": "tools/out/v2-edit/FTRD/candidate-2.png",
+        "outputs": [
+          {
+            "file": "assets/characters/FTRD_f.webp",
+            "width": 640,
+            "height": 840,
+            "bytes": 140874,
+            "hasAlpha": true,
+            "hasTransparency": true,
+            "quality": 88,
+            "alphaQuality": 100
+          },
+          {
+            "file": "assets/characters/FTRD_f@2x.webp",
+            "width": 1280,
+            "height": 1680,
+            "bytes": 111738,
+            "hasAlpha": true,
+            "hasTransparency": true,
+            "quality": 40,
+            "alphaQuality": 68
+          }
+        ]
+      },
+      "m": {
+        "exists": true,
+        "source": "tools/out/m/FTRD/candidate-2.png",
+        "outputs": [
+          {
+            "file": "assets/characters/FTRD_m.webp",
+            "width": 640,
+            "height": 840,
+            "bytes": 123602,
+            "hasAlpha": true,
+            "hasTransparency": true,
+            "quality": 88,
+            "alphaQuality": 100
+          },
+          {
+            "file": "assets/characters/FTRD_m@2x.webp",
+            "width": 1280,
+            "height": 1680,
+            "bytes": 91786,
+            "hasAlpha": true,
+            "hasTransparency": true,
+            "quality": 40,
+            "alphaQuality": 68
+          }
+        ]
+      }
     },
-    {
-      "code": "FTPC",
-      "source": "tools/out/v2/FTPC/candidate-3.png",
-      "outputs": [
-        {
-          "file": "assets/characters/FTPC.webp",
-          "width": 640,
-          "height": 840,
-          "bytes": 141644,
-          "hasAlpha": true,
-          "hasTransparency": true,
-          "quality": 88,
-          "alphaQuality": 100
-        },
-        {
-          "file": "assets/characters/FTPC@2x.webp",
-          "width": 1280,
-          "height": 1680,
-          "bytes": 98970,
-          "hasAlpha": true,
-          "hasTransparency": true,
-          "quality": 40,
-          "alphaQuality": 68
-        }
-      ]
+    "FTPC": {
+      "f": {
+        "exists": true,
+        "source": "tools/out/v2/FTPC/candidate-3.png",
+        "outputs": [
+          {
+            "file": "assets/characters/FTPC_f.webp",
+            "width": 640,
+            "height": 840,
+            "bytes": 141644,
+            "hasAlpha": true,
+            "hasTransparency": true,
+            "quality": 88,
+            "alphaQuality": 100
+          },
+          {
+            "file": "assets/characters/FTPC_f@2x.webp",
+            "width": 1280,
+            "height": 1680,
+            "bytes": 98970,
+            "hasAlpha": true,
+            "hasTransparency": true,
+            "quality": 40,
+            "alphaQuality": 68
+          }
+        ]
+      },
+      "m": {
+        "exists": true,
+        "source": "tools/out/m/FTPC/candidate-2.png",
+        "outputs": [
+          {
+            "file": "assets/characters/FTPC_m.webp",
+            "width": 640,
+            "height": 840,
+            "bytes": 134210,
+            "hasAlpha": true,
+            "hasTransparency": true,
+            "quality": 88,
+            "alphaQuality": 100
+          },
+          {
+            "file": "assets/characters/FTPC_m@2x.webp",
+            "width": 1280,
+            "height": 1680,
+            "bytes": 113574,
+            "hasAlpha": true,
+            "hasTransparency": true,
+            "quality": 40,
+            "alphaQuality": 68
+          }
+        ]
+      }
     },
-    {
-      "code": "FTPD",
-      "source": "tools/out/v2/FTPD/candidate-2.png",
-      "outputs": [
-        {
-          "file": "assets/characters/FTPD.webp",
-          "width": 640,
-          "height": 840,
-          "bytes": 125948,
-          "hasAlpha": true,
-          "hasTransparency": true,
-          "quality": 78,
-          "alphaQuality": 96
-        },
-        {
-          "file": "assets/characters/FTPD@2x.webp",
-          "width": 1280,
-          "height": 1680,
-          "bytes": 119648,
-          "hasAlpha": true,
-          "hasTransparency": true,
-          "quality": 40,
-          "alphaQuality": 68
-        }
-      ]
+    "FTPD": {
+      "f": {
+        "exists": true,
+        "source": "tools/out/f/FTPD/candidate-3.png",
+        "outputs": [
+          {
+            "file": "assets/characters/FTPD_f.webp",
+            "width": 640,
+            "height": 840,
+            "bytes": 137242,
+            "hasAlpha": true,
+            "hasTransparency": true,
+            "quality": 88,
+            "alphaQuality": 100
+          },
+          {
+            "file": "assets/characters/FTPD_f@2x.webp",
+            "width": 1280,
+            "height": 1680,
+            "bytes": 107466,
+            "hasAlpha": true,
+            "hasTransparency": true,
+            "quality": 40,
+            "alphaQuality": 68
+          }
+        ]
+      },
+      "m": {
+        "exists": true,
+        "source": "tools/out/v2/FTPD/candidate-2.png",
+        "outputs": [
+          {
+            "file": "assets/characters/FTPD_m.webp",
+            "width": 640,
+            "height": 840,
+            "bytes": 125948,
+            "hasAlpha": true,
+            "hasTransparency": true,
+            "quality": 78,
+            "alphaQuality": 96
+          },
+          {
+            "file": "assets/characters/FTPD_m@2x.webp",
+            "width": 1280,
+            "height": 1680,
+            "bytes": 119648,
+            "hasAlpha": true,
+            "hasTransparency": true,
+            "quality": 40,
+            "alphaQuality": 68
+          }
+        ]
+      }
     }
-  ]
+  }
 }

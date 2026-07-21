@@ -39,7 +39,7 @@ function pngSize(buffer) {
 
 async function main() {
   const chrome = await findChrome();
-  const character = await fs.readFile(path.join(ROOT_DIR, "assets", "characters", "FGPD.webp"));
+  const character = await fs.readFile(path.join(ROOT_DIR, "assets", "characters", "FGPD_m.webp"));
   const characterUrl = `data:image/webp;base64,${character.toString("base64")}`;
   const tempDir = await fs.mkdtemp(path.join(os.tmpdir(), "sub-rosa-og-"));
   const htmlPath = path.join(tempDir, "og-card.html");

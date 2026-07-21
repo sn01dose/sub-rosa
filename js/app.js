@@ -4,6 +4,11 @@
   const ALLOW_INDEXING = false;
   const STORAGE_AGE = "sr_age_ok";
   const STORAGE_RESULT = "sr_last_result";
+  const STORAGE_CHARACTER_APPEARANCE = "sr_character_appearance";
+  const CHARACTER_APPEARANCES = {
+    f: { label: "淑女" },
+    m: { label: "紳士" }
+  };
   const AXES = {
     lf: { title: "主導軸", high: "Lead", low: "Follow", highJa: "導きたい", lowJa: "委ねたい" },
     gt: { title: "刺激軸", high: "Give", low: "Take", highJa: "与えたい", lowJa: "受けたい" },
@@ -34,6 +39,7 @@
   const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
   const quizState = { order: [], answers: {}, current: 0 };
   let quizTransitioning = false;
+  let characterManifest = {};
 
   function escapeHtml(value) {
     return String(value).replace(/[&<>'"]/g, (char) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", "'": "&#39;", '"': "&quot;" })[char]);
@@ -49,12 +55,74 @@
     catch (_) { /* The site remains usable when storage is unavailable. */ }
   }
 
-  function characterSrc(type) {
-    return `assets/characters/${encodeURIComponent(type.code)}.webp`;
+  function availableCharacterAppearances(type) {
+    const entry = characterManifest[type.code];
+    if (!entry) return Object.keys(CHARACTER_APPEARANCES);
+    return Object.keys(CHARACTER_APPEARANCES).filter((appearance) => entry[appearance]?.exists === true);
+  }
+
+  function selectedCharacterAppearance(type) {
+    const preferred = storageGet(STORAGE_CHARACTER_APPEARANCE);
+    const available = availableCharacterAppearances(type);
+    if (available.includes(preferred)) return preferred;
+    return available[0] || (Object.hasOwn(CHARACTER_APPEARANCES, preferred) ? preferred : "f");
+  }
+
+  function characterSrc(type, appearance = selectedCharacterAppearance(type)) {
+    return `assets/characters/${encodeURIComponent(type.code)}_${appearance}.webp`;
   }
 
   function characterSvgSrc(type) {
     return `assets/characters/${encodeURIComponent(type.code)}.svg`;
+  }
+
+  function characterPortrait(type) {
+    const appearance = selectedCharacterAppearance(type);
+    const alternate = appearance === "f" ? "m" : "f";
+    const available = availableCharacterAppearances(type);
+    const toggle = available.length === 2
+      ? `<div class="character-appearance" role="group" aria-label="キャラクターの姿を選ぶ">${Object.entries(CHARACTER_APPEARANCES).map(([key, item]) => `<button type="button" data-character-appearance="${key}" aria-pressed="${key === appearance}">${item.label}</button>`).join("")}</div>`
+      : "";
+    return `<div class="character-stage"><img src="${characterSrc(type, appearance)}" data-character-code="${type.code}" data-character-appearance-current="${appearance}" data-character-fallback="selected" loading="lazy" decoding="async" onerror="if(this.dataset.characterFallback==='selected'){this.dataset.characterFallback='alternate';this.src='${characterSrc(type, alternate)}'}else if(this.dataset.characterFallback==='alternate'){this.dataset.characterFallback='svg';this.src='${characterSvgSrc(type)}'}else{this.onerror=null;this.dataset.characterFallback='silhouette';this.src='assets/adult-silhouette.svg'}" alt="${type.name}を表す成人の抽象シルエット">${toggle}</div>`;
+  }
+
+  function bindCharacterAppearance(type) {
+    document.querySelectorAll("[data-character-appearance]").forEach((button) => {
+      button.addEventListener("click", () => {
+        const appearance = button.dataset.characterAppearance;
+        if (!availableCharacterAppearances(type).includes(appearance)) return;
+        storageSet(STORAGE_CHARACTER_APPEARANCE, appearance);
+        document.querySelectorAll("[data-character-appearance]").forEach((item) => item.setAttribute("aria-pressed", String(item.dataset.characterAppearance === appearance)));
+        document.querySelectorAll(`[data-character-code="${type.code}"]`).forEach((image) => {
+          image.dataset.characterAppearanceCurrent = appearance;
+          image.dataset.characterFallback = "selected";
+          image.onerror = function handleCharacterError() {
+            const other = appearance === "f" ? "m" : "f";
+            if (this.dataset.characterFallback === "selected") {
+              this.dataset.characterFallback = "alternate";
+              this.src = characterSrc(type, other);
+            } else if (this.dataset.characterFallback === "alternate") {
+              this.dataset.characterFallback = "svg";
+              this.src = characterSvgSrc(type);
+            } else {
+              this.onerror = null;
+              this.dataset.characterFallback = "silhouette";
+              this.src = "assets/adult-silhouette.svg";
+            }
+          };
+          image.src = characterSrc(type, appearance);
+        });
+      });
+    });
+  }
+
+  async function loadCharacterManifest() {
+    try {
+      const response = await fetch("assets/characters/manifest.json", { cache: "no-store" });
+      if (!response.ok) return;
+      const manifest = await response.json();
+      if (manifest?.version === 2 && manifest.characters) characterManifest = manifest.characters;
+    } catch (_) { /* Image fallback keeps the app usable from file:// and offline copies. */ }
   }
 
   function setMetaPolicy() {
@@ -450,7 +518,7 @@
         <div class="page-intro"><p class="eyebrow">YOUR PORTRAIT</p><p class="quiet">薔薇の下で見つけた、あなたの傾向</p></div>
         <article class="result-card" aria-labelledby="result-name">
           <div class="seal" aria-label="モチーフ ${type.motif.detail}">${type.motif.icon}</div>
-          <div class="character-stage"><img src="${characterSrc(type)}" loading="lazy" decoding="async" onerror="if(this.dataset.characterFallback==='svg'){this.onerror=null;this.src='assets/adult-silhouette.svg'}else{this.dataset.characterFallback='svg';this.src='${characterSvgSrc(type)}'}" alt="${type.name}を表す成人の抽象シルエット"></div>
+          ${characterPortrait(type)}
           <div class="result-card-copy">
             <span class="result-code">TYPE ${code}</span>
             <h1 id="result-name">${type.name}</h1>
@@ -471,6 +539,7 @@
     `, `${type.name}｜診断結果`);
 
     bindShareActions(type);
+    bindCharacterAppearance(type);
     const retryButton = document.getElementById("retry-quiz");
     if (retryButton) retryButton.addEventListener("click", () => {
       resetQuiz();
@@ -487,13 +556,14 @@
           <a class="back-link" href="#/types">← 16タイプ一覧へ</a>
           <article class="result-card" aria-labelledby="type-name">
             <div class="seal" aria-label="モチーフ ${type.motif.detail}">${type.motif.icon}</div>
-            <div class="character-stage"><img src="${characterSrc(type)}" loading="lazy" decoding="async" onerror="if(this.dataset.characterFallback==='svg'){this.onerror=null;this.src='assets/adult-silhouette.svg'}else{this.dataset.characterFallback='svg';this.src='${characterSvgSrc(type)}'}" alt="${type.name}を表す成人の抽象シルエット"></div>
+            ${characterPortrait(type)}
             <div class="result-card-copy"><span class="result-code">TYPE ${type.code}</span><h1 id="type-name">${type.name}</h1><p class="result-catch">${type.catch}</p><div class="badge-row"><span class="badge">${type.concept}</span></div></div>
           </article>
           <section class="result-section result-score-cta"><p class="eyebrow">YOUR OWN INTENSITY</p><h2>診断して自分の強度を見る</h2><p>タイプ図鑑では強度を決めつけません。40問の診断で、今のあなたの4軸スコアと強度を確かめられます。</p><a class="button button-primary" href="#/quiz">診断して自分の強度を見る</a></section>
           ${freeTypeSections(type)}
           ${noteTeaser(type)}
         </section>`, `${type.name}｜タイプ図鑑`);
+      bindCharacterAppearance(type);
       return;
     }
     renderPage(`
@@ -618,9 +688,14 @@
     else renderNotFound();
   }
 
-  setMetaPolicy();
-  initAgeGate();
-  window.addEventListener("hashchange", router);
-  if (!location.hash) history.replaceState(null, "", "#/");
-  router();
+  async function initialize() {
+    setMetaPolicy();
+    initAgeGate();
+    await loadCharacterManifest();
+    window.addEventListener("hashchange", router);
+    if (!location.hash) history.replaceState(null, "", "#/");
+    router();
+  }
+
+  initialize();
 })();

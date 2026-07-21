@@ -16,8 +16,8 @@ function labelSvg(text, width = CELL_WIDTH, height = 38) {
   </svg>`);
 }
 
-async function candidateTile(code, file) {
-  const image = await sharp(path.join(OUT_DIR, code, file))
+async function candidateTile(code, file, source) {
+  const image = await sharp(path.join(OUT_DIR, source, code, file))
     .resize({ width: IMAGE_WIDTH, height: IMAGE_HEIGHT, fit: "contain", background: "#efe6da" })
     .flatten({ background: "#efe6da" })
     .png()
@@ -32,9 +32,20 @@ async function candidateTile(code, file) {
 }
 
 async function main() {
+  const args = process.argv.slice(2);
+  let source = null;
+  for (let index = 0; index < args.length; index += 1) {
+    if (args[index] === "--source" && args[index + 1]) { source = args[index + 1].toLowerCase(); index += 1; }
+    else throw new Error(`不明な引数です: ${args[index]}`);
+  }
+  if (!new Set(["f", "m"]).has(source)) throw new Error("--source は f / m で指定してください。");
   const types = await loadTypes();
-  const codes = Object.keys(types);
-  const sheetDir = path.join(OUT_DIR, "review-sheets");
+  const codes = [];
+  for (const code of Object.keys(types)) {
+    try { await fs.access(path.join(OUT_DIR, source, code, "candidate-1.png")); codes.push(code); }
+    catch { /* This appearance is already confirmed or not generated. */ }
+  }
+  const sheetDir = path.join(OUT_DIR, source, "review-sheets");
   await fs.mkdir(sheetDir, { recursive: true });
 
   for (let offset = 0; offset < codes.length; offset += TYPES_PER_SHEET) {
@@ -43,7 +54,7 @@ async function main() {
     for (let row = 0; row < group.length; row += 1) {
       for (let candidate = 1; candidate <= 3; candidate += 1) {
         const file = `candidate-${candidate}.png`;
-        tiles.push({ input: await candidateTile(group[row], file), left: (candidate - 1) * CELL_WIDTH, top: row * CELL_HEIGHT });
+        tiles.push({ input: await candidateTile(group[row], file, source), left: (candidate - 1) * CELL_WIDTH, top: row * CELL_HEIGHT });
       }
     }
     const destination = path.join(sheetDir, `sheet-${Math.floor(offset / TYPES_PER_SHEET) + 1}.jpg`);
